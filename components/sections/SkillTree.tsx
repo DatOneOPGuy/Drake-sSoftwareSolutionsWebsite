@@ -3,7 +3,6 @@
 import {
   Box,
   Text,
-  Heading,
   Button,
   Icon,
   Grid,
@@ -13,12 +12,13 @@ import { Collapse } from '@chakra-ui/transition';
 import { Progress } from '@chakra-ui/progress';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
+import SectionHeading from '../ui/SectionHeading';
 
 const skills = [
   {
     skill: 'Full-Stack Development',
     proficiency: 95,
-    summary: 'Web applications development with a sleek design, and great performance',
+    summary: 'Building web applications with clean architecture and solid performance',
     techStack: {
       React: ['Next.js', 'Framer Motion', 'Chakra UI'],
       JavaScript: ['Node.js', 'Express'],
@@ -37,7 +37,7 @@ const skills = [
   {
     skill: 'Data Analysis & Computer Vision',
     proficiency: 85,
-    summary: 'Data analysis and Computer Vision using YOLO',
+    summary: 'Data analysis and computer vision workflows with YOLO',
     techStack: {
       Python: ['Pandas', 'Matplotlib', 'YOLO', 'NumPy'],
     },
@@ -97,10 +97,15 @@ export default function SkillTree() {
   };
 
   return (
-    <Box as="section" id="skills" py={16} px={6}>
-      <Heading as="h2" fontSize="3xl" mb={10} textAlign="center">
-        Skill Tree
-      </Heading>
+    <Box as="section" id="skills" py={0} px={0}>
+      <Box maxW="6xl" mx="auto">
+        <SectionHeading
+          label="Skills"
+          title="A practical stack for product, platform, and security work."
+          description="The focus is not breadth for its own sake. It is being able to ship the right thing in the right place."
+          align="center"
+        />
+      </Box>
       <Grid
         templateColumns={{ base: '1fr', md: 'repeat(auto-fit, minmax(300px, 1fr))' }}
         gap={5}
@@ -111,15 +116,16 @@ export default function SkillTree() {
           <Box
             key={skill}
             p={5}
-            borderRadius="lg"
+            borderRadius="2xl"
             border="1px solid"
-            borderColor="whiteAlpha.200"
-            bg="linear-gradient(to bottom right, var(--chakra-colors-accentGreenAlpha-400), var(--chakra-colors-accentGreenAlpha-600))"
-            _hover={{ bg: "linear-gradient(to bottom right, var(--chakra-colors-accentGreenAlpha-500), var(--chakra-colors-accentGreenAlpha-700))" }}
-            transition="background 0.3s ease"
-            boxShadow="lg"
+            borderColor="whiteAlpha.100"
+            bg="rgba(10, 14, 22, 0.7)"
+            _hover={{ borderColor: 'whiteAlpha.200', transform: 'translateY(-2px)' }}
+            transition="all 0.2s ease"
+            boxShadow="0 12px 30px rgba(0, 0, 0, 0.16)"
 
           >
+            <Box h="1px" w="2.5rem" mb={3} bgGradient="linear(to-r, accentGreen, accentLight)" />
             <Button
               variant="ghost"
               onClick={() => toggleSkill(skill)}
@@ -190,7 +196,7 @@ export default function SkillTree() {
                             color="gray.300"
                           >
                             {libs.map((lib: string) => (
-                              <Text key={lib}>• {lib}</Text>
+                              <Text key={lib}>- {lib}</Text>
                             ))}
                           </VStack>
                         </Collapse>

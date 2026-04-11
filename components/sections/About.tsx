@@ -1,77 +1,31 @@
 'use client';
 
-import { Container, Heading, Text, Box, Icon, VStack } from '@chakra-ui/react';
+import { Container, Text, Box, VStack } from '@chakra-ui/react';
 import { FadeIn } from '../motion/FadeIn';
-import { FaCode, FaDatabase, FaLaptopCode, FaRobot, FaServer } from 'react-icons/fa';
-import { Typewriter } from 'react-simple-typewriter';
+import SectionHeading from '../ui/SectionHeading';
 
 export default function About() {
   return (
-    <Container as="section" id="about" py={{ base: 16, md: 24 }} maxW="4xl">
+    <Container as="section" id="about" py={0} maxW="4xl">
       <FadeIn>
         <VStack gap={6} align="start">
-          <Heading as="h2" size="xl" color="accentGreen">
-            About Me
-          </Heading>
+          <SectionHeading
+            label="About"
+            title="I build practical software across product and infrastructure."
+            description="From system-level tooling to user-facing apps, I focus on software that performs well and stays clear to use."
+          />
 
-          <Text fontSize="lg" color="accentLight">
-            <Typewriter
-              words={[
-                "Crafting systems that scale. And interfaces that captivate.",
-                "From YOLO pipelines to 3D frontends, I build full-stack experiences.",
-                "My work blends engineering rigor with creative flair.",
-              ]}
-              loop
-              cursor
-              cursorStyle="|"
-              typeSpeed={40}
-              deleteSpeed={20}
-              delaySpeed={2000}
-            />
+          <Text fontSize="lg" color="gray.300" lineHeight="1.8">
+            My background spans C, Python, Swift, React, and systems work around networking and computer vision.
+            I like projects that sit between product and infrastructure, where the code has to be useful and the UI still matters.
           </Text>
 
-          <Text fontSize="lg" color="accentLight">
-            I'm a full-stack engineer who thrives at the intersection of logic and design.
-            My journey spans building processor simulators in C, deploying YOLO-based vision pipelines,
-            creating multiplayer game logic, and crafting 3D-animated portfolio interfaces.
-          </Text>
-
-          <Text fontSize="lg" color="accentLight">
-            I care about clean code, scalable architecture, expressive visuals, and delightful UX—whether it's a low-level memory visualizer, a dashboard, or a pet system with real-time logic.
-          </Text>
-
-          <Box pl={4} borderLeft="4px solid" borderColor="accentGreen">
+          <Box pl={4} borderLeft="2px solid" borderColor="accentGreen" opacity={0.9}>
             <VStack align="start" gap={3}>
-              <Box display="flex" alignItems="center" gap={3}>
-                <Icon as={FaCode} boxSize={5} color="accentGreen" />
-                <Text color="accentLight" fontSize="md">
-                  Bridging low-level systems (C, Assembly) with expressive UI (React, Swift)
-                </Text>
-              </Box>
-              <Box display="flex" alignItems="center" gap={3}>
-                <Icon as={FaDatabase} boxSize={5} color="accentGreen" />
-                <Text color="accentLight" fontSize="md">
-                  Building pipelines that process data at scale in real time (Python)
-                </Text>
-              </Box>
-              <Box display="flex" alignItems="center" gap={3}>
-                <Icon as={FaLaptopCode} boxSize={5} color="accentGreen" />
-                <Text color="accentLight" fontSize="md">
-                  Prototyping game systems, interactive puzzles, and WebGL demos
-                </Text>
-              </Box>
-              <Box display="flex" alignItems="center" gap={3}>
-                <Icon as={FaRobot} boxSize={5} color="accentGreen" />
-                <Text color="accentLight" fontSize="md">
-                  Integrating machine vision (YOLO, OpenCV) into real-world workflows
-                </Text>
-              </Box>
-              <Box display="flex" alignItems="center" gap={3}>
-                <Icon as={FaServer} boxSize={5} color="accentGreen" />
-                <Text color="accentLight" fontSize="md">
-                  Engineering backend systems using Node.js, MongoDB, and sockets
-                </Text>
-              </Box>
+              <Text color="gray.300" fontSize="md"> Bridging desktop apps, mobile apps, and backend services</Text>
+              <Text color="gray.300" fontSize="md"> Building real time pipelines for vision and network data</Text>
+              <Text color="gray.300" fontSize="md"> Designing interfaces that stay clear under heavy use</Text>
+              <Text color="gray.300" fontSize="md"> Automating repeat work with scripts and internal tools</Text>
             </VStack>
           </Box>
         </VStack>

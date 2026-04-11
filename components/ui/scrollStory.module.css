@@ -1,0 +1,98 @@
+.storyRoot {
+  position: relative;
+  min-height: 420vh;
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mediaLayer {
+  position: absolute;
+  inset: 0;
+  will-change: opacity, transform;
+}
+
+.mediaAsset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sceneOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(0, 182, 124, 0.2), transparent 30%),
+    linear-gradient(180deg, rgba(4, 5, 7, 0.52), rgba(4, 5, 7, 0.86));
+}
+
+.storySteps {
+  position: relative;
+  z-index: 2;
+}
+
+.storyStep {
+  min-height: 105vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem 1.25rem;
+  scroll-snap-align: start;
+}
+
+.stepContent {
+  max-width: 48rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.2rem;
+  background: rgba(5, 7, 10, 0.66);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.26);
+  padding: clamp(1rem, 2.8vw, 2rem);
+}
+
+.stepLabel {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(230, 237, 247, 0.78);
+}
+
+.stepTitle {
+  margin: 0.55rem 0 0;
+  font-size: clamp(2rem, 4.8vw, 4rem);
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.stepDescription {
+  margin: 0.9rem 0 0;
+  color: rgba(230, 237, 247, 0.86);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+}
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+@media (max-width: 62rem) {
+  .storyRoot {
+    min-height: 380vh;
+  }
+
+  .storyStep {
+    min-height: 96vh;
+    padding: 1.2rem 0.9rem;
+  }
+
+  .stepContent {
+    max-width: 100%;
+  }
+}

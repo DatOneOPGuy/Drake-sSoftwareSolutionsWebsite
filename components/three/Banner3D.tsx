@@ -11,9 +11,9 @@ export default function Banner3D() {
   return (
     <Box
       position="relative"
-      h={{ base: '50vh', md: '60vh' }}
+      h={{ base: '32vh', md: '38vh' }}
       w="full"
-      bgGradient="linear(to-b, #0e0f13, transparent 60%)"
+      bgGradient="linear(to-b, #070a11, transparent 72%)"
       overflow="hidden"
     >
       <Suspense fallback={null}>
@@ -33,7 +33,7 @@ export default function Banner3D() {
         left={0}
         w="full"
         h="40%"
-        bgGradient="linear(to-b, transparent, #0e0f13)"
+        bgGradient="linear(to-b, transparent, #070a11)"
         zIndex={2}
       />
     </Box>

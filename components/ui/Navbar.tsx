@@ -5,7 +5,7 @@ import { Box, Flex, Link, IconButton, Icon } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { ArrowUpIcon } from '@heroicons/react/24/outline';
 
-const MotionHeader = motion(Box);
+const MotionHeader = motion.create(Box);
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -28,29 +28,32 @@ export default function Navbar() {
       position="fixed"
       top="0"
       w="100%"
-      bg="rgba(16,16,16,0.8)"
-      backdropFilter="blur(10px)"
+      bg="rgba(7,10,17,0.72)"
+      backdropFilter="blur(16px)"
+      borderBottom="1px solid"
+      borderColor="whiteAlpha.100"
       zIndex={50}
     >
       <Flex
         maxW="7xl"
         mx="auto"
         px={6}
-        py={4}
+        py={3.5}
         align="center"
         justify="space-between"
         color="accentLight"
       >
         <Link
           href="/"
-          fontSize="xl"
-          fontWeight="bold"
-          letterSpacing="widest"
+          fontSize="sm"
+          fontWeight="700"
+          letterSpacing="0.32em"
+          textTransform="uppercase"
           _hover={{ color: 'accentGreen' }}
         >
           Mahmoud Elfeel
         </Link>
-        <Flex as="nav" gap={6} fontSize="sm" fontWeight="medium">
+        <Flex as="nav" gap={5} fontSize="xs" fontWeight="600" letterSpacing="0.16em" textTransform="uppercase">
           {['about', 'experience', 'projects', 'contact'].map((id) => (
             <Link
               key={id}
@@ -70,9 +73,9 @@ export default function Navbar() {
           right={6}
           aria-label="Back to top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          bg="rgba(0,196,140,0.2)"
-          _hover={{ bg: 'rgba(0,196,140,0.4)' }}
-          backdropFilter="blur(6px)"
+          bg="rgba(0,224,166,0.16)"
+          _hover={{ bg: 'rgba(0,224,166,0.28)' }}
+          backdropFilter="blur(10px)"
           size="md"
         >
           <Icon as={ArrowUpIcon} boxSize={5} />

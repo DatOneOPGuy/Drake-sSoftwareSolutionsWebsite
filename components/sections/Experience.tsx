@@ -2,96 +2,98 @@
 
 import {
   Container,
-  Heading,
   VStack,
   Box,
   Text,
   HStack,
-  Icon,
 } from '@chakra-ui/react';
 import { FadeIn } from '../motion/FadeIn';
-import { FaBuilding, FaCalendarAlt } from 'react-icons/fa';
+import SectionHeading from '../ui/SectionHeading';
 
 export default function Experience() {
   return (
-    <Container as="section" id="experience" py={{ base: 16, md: 24 }} maxW="5xl">
+    <Container as="section" id="experience" py={0} maxW="5xl">
       <FadeIn>
-        <Heading as="h2" size="xl" color="accentGreen" mb={8}>
-          Experience
-        </Heading>
+        <SectionHeading
+          label="Experience"
+          title="Roles across product delivery, tooling, and security."
+          description="Current and recent work focused on desktop, Android, networking, and computer vision."
+        />
 
         <VStack gap={10} align="start">
-          {/* IAV Job */}
           <Box
             border="1px solid"
-            borderColor="whiteAlpha.200"
-            borderRadius="lg"
+            borderColor="whiteAlpha.100"
+            borderRadius="2xl"
             p={6}
-            bg="blackAlpha.500"
-            boxShadow="md"
+            bg="rgba(10, 14, 22, 0.72)"
+            boxShadow="0 16px 40px rgba(0, 0, 0, 0.22)"
             w="full"
           >
             <VStack gap={4} align="start">
-              <HStack gap={4}>
-                <Icon as={FaBuilding} color="accentGreen" />
-                <Text fontSize="lg" fontWeight="bold" color="white">
-                  IAV GmbH
+              <Box h="1px" w="3rem" bgGradient="linear(to-r, accentGreen, accentLight)" />
+              <HStack gap={3} wrap="wrap">
+                <Text fontSize="lg" fontWeight="700" color="white">
+                  Resistine GmbH
+                </Text>
+                <Text fontSize="xs" textTransform="uppercase" letterSpacing="0.2em" color="gray.400">
+                  Berlin, Germany
                 </Text>
               </HStack>
-              <HStack gap={4}>
-                <Icon as={FaCalendarAlt} color="gray.400" />
+              <HStack gap={4} wrap="wrap">
                 <Text fontSize="sm" color="gray.400">
-                  Oct 2024 – Present · Berlin, Germany
+                  Dec 2025 - Present
                 </Text>
               </HStack>
               <Text fontSize="md" color="accentLight" fontStyle="italic">
-                Working Student – Data & Computer Vision
+                Desktop and Android Developer, Network Security
               </Text>
               <Box w="100%" h="1px" bg="whiteAlpha.300" my={2} />
               <VStack align="start" gap={3}>
-                <Text color="gray.300">• Built end-to-end CV pipelines with YOLO for automotive analytics</Text>
-                <Text color="gray.300">• Developed interactive dashboards with Next.js </Text>
-                <Text color="gray.300">• Prototyped iOS apps with Swift for computer vision features</Text>
-                <Text color="gray.300">• Optimized high-throughput Python pipelines for real-time analysis</Text>
+                <Text color="gray.300">- Built and deployed desktop apps for windows and linux</Text>
+                <Text color="gray.300">- Developed Android apps with Kotlin</Text>
+                <Text color="gray.300">- Worked on network security tasks such as MDM, endpoint protection</Text>
               </VStack>
             </VStack>
           </Box>
 
-          {/* Pre-job self projects */}
           <Box
             border="1px solid"
-            borderColor="whiteAlpha.200"
-            borderRadius="lg"
+            borderColor="whiteAlpha.100"
+            borderRadius="2xl"
             p={6}
-            bg="blackAlpha.400"
-            boxShadow="sm"
+            bg="rgba(10, 14, 22, 0.58)"
+            boxShadow="0 10px 28px rgba(0, 0, 0, 0.16)"
             w="full"
           >
             <VStack gap={4} align="start">
-              <HStack gap={4}>
-                <Icon as={FaBuilding} color="accentGreen" />
-                <Text fontSize="lg" fontWeight="bold" color="white">
-                  Independent Projects
+              <Box h="1px" w="3rem" bgGradient="linear(to-r, accentGreen, accentLight)" />
+              <HStack gap={3} wrap="wrap">
+                <Text fontSize="lg" fontWeight="700" color="white">
+                  IAV GmbH
+                </Text>
+                <Text fontSize="xs" textTransform="uppercase" letterSpacing="0.2em" color="gray.400">
+                  Berlin, Germany
                 </Text>
               </HStack>
-              <HStack gap={4}>
-                <Icon as={FaCalendarAlt} color="gray.400" />
+              <HStack gap={4} wrap="wrap">
                 <Text fontSize="sm" color="gray.400">
-                  2022 – 2024
+                  Oct 2024 - Nov 2025
                 </Text>
               </HStack>
               <Text fontSize="md" color="accentLight" fontStyle="italic">
-                Personal and Academic Projects
+                iOS, Frontend Developer and Computer Vision
               </Text>
               <Box w="100%" h="1px" bg="whiteAlpha.300" my={2} />
               <VStack align="start" gap={3}>
-                <Text color="gray.300">• Designed a processor simulation in C with custom ISA and memory visualization</Text>
-                <Text color="gray.300">• Built a multiplayer microeconomy system with wagers, resource management, centralized store, and real-time updates</Text>
-                <Text color="gray.300">• Engineered a TCP-based LAN chat tool in Python</Text>
-                <Text color="gray.300">• Created a portfolio site with 3D shaders, motion, and interactive skill trees</Text>
+                <Text color="gray.300">- Built computer vision pipelines with YOLO for automotive data</Text>
+                <Text color="gray.300">- Built dashboards and internal tools with Next.js</Text>
+                <Text color="gray.300">- Prototyped iOS features in Swift for vision workflows</Text>
+                <Text color="gray.300">- Improved Python pipelines for faster analysis and processing</Text>
               </VStack>
             </VStack>
           </Box>
+
         </VStack>
       </FadeIn>
     </Container>

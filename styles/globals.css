@@ -1,11 +1,10 @@
 :root {
-  --hero-overlay-color: rgba(0, 0, 0, 0.6);
-  --hero-gradient-radius: 40%;
-  --hero-title-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --hero-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --hero-overlay-color: rgba(6, 10, 18, 0.55);
+  --hero-gradient-radius: 36%;
+  --hero-title-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+  --hero-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* 1) Full-height + smooth scroll */
 html,
 body,
 #__next {
@@ -13,16 +12,48 @@ body,
   scroll-behavior: smooth;
 }
 
-/* 2) Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background: #4B3F72;
-  border-radius: 3px;
+html {
+  scroll-snap-type: y proximity;
 }
 
-/* 3) Shape divider (keep if still used in any legacy markup) */
+body {
+  margin: 0;
+  color: #e6edf7;
+  background:
+    radial-gradient(circle at top, rgba(0, 182, 124, 0.12), transparent 34%),
+    radial-gradient(circle at 85% 0%, rgba(76, 61, 114, 0.16), transparent 30%),
+    linear-gradient(180deg, #050608 0%, #0a0d12 52%, #07090d 100%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 78%);
+  opacity: 0.5;
+}
+
+::selection {
+  background: rgba(0, 182, 124, 0.24);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00b67c, #4b3f72);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
 .shape-divider {
   position: relative;
 }

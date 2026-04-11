@@ -9,6 +9,8 @@ import {
   Button,
   VStack,
   Link,
+  HStack,
+  Badge,
 } from '@chakra-ui/react';
 import { Collapse } from '@chakra-ui/transition';
 import { ArrowTopRightOnSquareIcon, ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
@@ -21,7 +23,10 @@ type ProjectProps = {
   year: number;
   techStack: string[];
   features: string[];
+  domain: string;
   repo?: string;
+  defaultOpen?: boolean;
+  hideToggle?: boolean;
 };
 
 export default function ProjectCard({
@@ -31,25 +36,37 @@ export default function ProjectCard({
   year,
   techStack,
   features,
+  domain,
   repo,
+  defaultOpen = false,
+  hideToggle = false,
 }: ProjectProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
     <Box
-      borderRadius="xl"
-      bgGradient="linear(to-br, blackAlpha.600, #1a1f2b)"
+      borderRadius="2xl"
+      bg="rgba(10, 14, 22, 0.72)"
       border="1px solid"
-      borderColor="whiteAlpha.200"
+      borderColor="whiteAlpha.100"
       p={6}
-      transition="all .2s"
-      _hover={{ boxShadow: 'xl' }}
+      transition="all .2s ease"
+      _hover={{ boxShadow: '0 18px 36px rgba(0, 0, 0, 0.22)', borderColor: 'whiteAlpha.200', transform: 'translateY(-2px)' }}
     >
-      <Flex justify="space-between" align="center" mb={2}>
-        <Heading as="h3" size="md" color="accentLight">
-          {title}
-        </Heading>
-        <Flex gap={2}>
+      <Box h="1px" w="3rem" mb={4} bgGradient="linear(to-r, accentGreen, accentLight)" />
+      <Flex justify="space-between" align="start" gap={4} mb={2} wrap="wrap">
+        <Box>
+          <Heading as="h3" size="md" color="white" mb={1}>
+            {title}
+          </Heading>
+          <Text color="gray.400" fontSize="xs" letterSpacing="0.22em" textTransform="uppercase">
+            {year}
+          </Text>
+          <HStack mt={2} gap={2}>
+            <Badge colorScheme="cyan">{domain}</Badge>
+          </HStack>
+        </Box>
+        <Flex gap={2} wrap="wrap" justify="end">
           {repo && (
             <Link
               href={repo}
@@ -62,40 +79,39 @@ export default function ProjectCard({
               gap={1}
               _hover={{ textDecoration: 'underline' }}
             >
-              View
+              Repository
               <Icon as={ArrowTopRightOnSquareIcon} boxSize={4} />
             </Link>
           )}
-          <Button
-            size="xs"
-            onClick={() => setIsOpen(!isOpen)}
-            variant="ghost"
-            color="gray.400"
-            _hover={{ color: 'accentGreen' }}
-            display="inline-flex"
-            alignItems="center"
-            gap={1}
-          >
-            {isOpen ? 'Less' : 'More'}
-            <Icon
-              as={isOpen ? ChevronDownIcon : ChevronRightIcon}
-              boxSize={4}
-            />
-          </Button>
+          {!hideToggle && (
+            <Button
+              size="xs"
+              onClick={() => setIsOpen(!isOpen)}
+              variant="ghost"
+              color="gray.400"
+              _hover={{ color: 'accentGreen' }}
+              display="inline-flex"
+              alignItems="center"
+              gap={1}
+            >
+              {isOpen ? 'Less' : 'More'}
+              <Icon
+                as={isOpen ? ChevronDownIcon : ChevronRightIcon}
+                boxSize={4}
+              />
+            </Button>
+          )}
         </Flex>
       </Flex>
 
-      <Text color="accentLight" fontSize="sm">
+      <Text color="gray.300" fontSize="sm" lineHeight="1.7">
         {shortDesc}
       </Text>
 
       <Collapse in={isOpen} animateOpacity>
-        <VStack align="start" gap={3} mt={4}>
+        <VStack align="start" gap={3} mt={4} pt={4} borderTop="1px solid" borderColor="whiteAlpha.100">
           <Text fontSize="sm" color="gray.300">
-            <strong>Year:</strong> {year}
-          </Text>
-          <Text fontSize="sm" color="gray.300">
-            <strong>Details:</strong> {longDesc}
+            {longDesc}
           </Text>
           <Box>
             <Text fontWeight="bold" fontSize="sm" mb={1} color="accentGreen">
@@ -103,7 +119,7 @@ export default function ProjectCard({
             </Text>
             <VStack align="start" pl={2} gap={1}>
               {techStack.map(tech => (
-                <Text key={tech} fontSize="sm" color="gray.400">• {tech}</Text>
+                <Text key={tech} fontSize="sm" color="gray.400">- {tech}</Text>
               ))}
             </VStack>
           </Box>
@@ -113,7 +129,7 @@ export default function ProjectCard({
             </Text>
             <VStack align="start" pl={2} gap={1}>
               {features.map(feature => (
-                <Text key={feature} fontSize="sm" color="gray.400">• {feature}</Text>
+                <Text key={feature} fontSize="sm" color="gray.400">- {feature}</Text>
               ))}
             </VStack>
           </Box>

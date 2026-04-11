@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Link, IconButton, Icon } from '@chakra-ui/react';
+import Image from 'next/image';
 import {
   ArrowUpIcon,
   EnvelopeIcon,
 } from '@heroicons/react/24/outline';
 import { FaGithub } from 'react-icons/fa';
-import { GiElephant } from 'react-icons/gi';
 
 
 export default function Footer() {
@@ -24,11 +24,11 @@ export default function Footer() {
       as="footer"
       mt={32}
       borderTop="1px solid"
-      borderColor="rgba(226,232,240,0.1)"
-      bg="rgba(16,16,16,0.05)"
+      borderColor="whiteAlpha.100"
+      bg="rgba(7,10,17,0.28)"
       py={12}
       fontSize="sm"
-      color="rgba(226,232,240,0.8)"
+      color="rgba(230,237,247,0.76)"
     >
       <Flex
         maxW="4xl"
@@ -40,15 +40,14 @@ export default function Footer() {
         gap={6}
       >
         <Box textAlign={{ base: 'center', md: 'left' }}>
-          <Text>© {new Date().getFullYear()} Mahmoud Elfeel</Text>
+          <Text>© Mahmoud Elfeel</Text>
           <Text fontSize="xs" opacity={0.6}>
-            Built with Next.js, Chakra UI, and ❤️
           </Text>
         </Box>
 
         <Flex align="center" gap={4}>
           <Link
-            href="mailto:mahmooudelfeelig@gmail.com"
+            href="mailto:mahmoudelfeelig@gmail.com"
             _hover={{ color: 'accentGreen' }}
             aria-label="Email"
           >
@@ -69,8 +68,16 @@ export default function Footer() {
             rel="noopener noreferrer"
             _hover={{ color: 'accentGreen' }}
             aria-label="Website"
+            display="inline-flex"
+            alignItems="center"
           >
-            <Icon as={GiElephant} boxSize={5} />
+            <Image
+              src="/Logo.png"
+              alt="Mahmoud Elfeel logo"
+              width={20}
+              height={20}
+              style={{ borderRadius: 9999 }}
+            />
           </Link>
         </Flex>
       </Flex>
@@ -83,9 +90,9 @@ export default function Footer() {
           zIndex={50}
           aria-label="Back to top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          bg="rgba(13, 236, 13, 0.75)"
-          _hover={{ bg: 'rgba(13, 236, 13, 0.4)' }}
-          backdropFilter="blur(6px)"
+          bg="rgba(0, 224, 166, 0.18)"
+          _hover={{ bg: 'rgba(0, 224, 166, 0.3)' }}
+          backdropFilter="blur(10px)"
           size="md"
         >
           <Icon as={ArrowUpIcon} boxSize={5} />
