@@ -17,13 +17,13 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <VStack align={align === 'center' ? 'center' : 'start'} gap={3} mb={8} maxW="3xl">
-      <Box h="1px" w="3.5rem" bgGradient="linear(to-r, accentGreen, accentLight)" opacity={0.8} />
+      <Box h="2px" w="3.5rem" bgGradient="linear(to-r, accentRed, accentFlame)" opacity={0.9} />
       <Text
         fontSize="xs"
         letterSpacing="0.3em"
         textTransform="uppercase"
-        color="accentLight"
-        opacity={0.72}
+        color="accentRed"
+        opacity={0.85}
       >
         {label}
       </Text>

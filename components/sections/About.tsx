@@ -11,21 +11,23 @@ export default function About() {
         <VStack gap={6} align="start">
           <SectionHeading
             label="About"
-            title="I build practical software across product and infrastructure."
-            description="From system-level tooling to user-facing apps, I focus on software that performs well and stays clear to use."
+            title="A studio built to ship, not to stall."
+            description="Drake's Software Solutions is a freelance software development studio based in South Carolina, helping founders and teams turn ideas into precise, maintainable software."
           />
 
           <Text fontSize="lg" color="gray.300" lineHeight="1.8">
-            My background spans C, Python, Swift, React, and systems work around networking and computer vision.
-            I like projects that sit between product and infrastructure, where the code has to be useful and the UI still matters.
+            I&apos;m Drake — a software engineer and Computer Science student at Wofford College with hands-on
+            experience building security software, native mobile apps, and AI-powered tools. I partner with
+            founders, small teams, and non-technical clients from first sketch all the way through shipping
+            and support.
           </Text>
 
-          <Box pl={4} borderLeft="2px solid" borderColor="accentGreen" opacity={0.9}>
+          <Box pl={4} borderLeft="2px solid" borderColor="accentRed" opacity={0.95}>
             <VStack align="start" gap={3}>
-              <Text color="gray.300" fontSize="md"> Bridging desktop apps, mobile apps, and backend services</Text>
-              <Text color="gray.300" fontSize="md"> Building real time pipelines for vision and network data</Text>
-              <Text color="gray.300" fontSize="md"> Designing interfaces that stay clear under heavy use</Text>
-              <Text color="gray.300" fontSize="md"> Automating repeat work with scripts and internal tools</Text>
+              <Text color="gray.300" fontSize="md">— Custom software, internal tools, and backend services</Text>
+              <Text color="gray.300" fontSize="md">— Native iOS (Swift/SwiftUI) and Android (Kotlin) development</Text>
+              <Text color="gray.300" fontSize="md">— AI integration: LLM features, RAG pipelines, workflow automation</Text>
+              <Text color="gray.300" fontSize="md">— Security reviews, hardening, and secure-by-default architecture</Text>
             </VStack>
           </Box>
         </VStack>

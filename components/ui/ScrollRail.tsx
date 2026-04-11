@@ -25,7 +25,7 @@ export default function ScrollRail() {
         style={{ scaleY: height, originY: 0 }}
         w="full"
         h="full"
-        bgGradient="linear(to-b, accentLight, accentMute, accentGreen)"
+        bgGradient="linear(to-b, accentRed, accentRedDeep, accentFlame)"
       />
     </Box>
   );

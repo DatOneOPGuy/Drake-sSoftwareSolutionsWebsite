@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Box, Flex, Link, IconButton, Icon } from '@chakra-ui/react';
+import { Box, Flex, Link, IconButton, Icon, HStack, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpIcon } from '@heroicons/react/24/outline';
 
 const MotionHeader = motion.create(Box);
+
+const NAV_SECTIONS = ['about', 'services', 'process', 'work', 'faq', 'contact'] as const;
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -28,7 +31,7 @@ export default function Navbar() {
       position="fixed"
       top="0"
       w="100%"
-      bg="rgba(7,10,17,0.72)"
+      bg="rgba(7,7,9,0.78)"
       backdropFilter="blur(16px)"
       borderBottom="1px solid"
       borderColor="whiteAlpha.100"
@@ -41,29 +44,44 @@ export default function Navbar() {
         py={3.5}
         align="center"
         justify="space-between"
-        color="accentLight"
+        color="gray.200"
       >
         <Link
-          href="/"
-          fontSize="sm"
-          fontWeight="700"
-          letterSpacing="0.32em"
-          textTransform="uppercase"
-          _hover={{ color: 'accentGreen' }}
+          href="#top"
+          display="inline-flex"
+          alignItems="center"
+          gap={2.5}
+          _hover={{ color: 'accentRed', textDecoration: 'none' }}
         >
-          Mahmoud Elfeel
+          <Image
+            src="/logo-dark.png"
+            alt="Drake's Software Solutions"
+            width={28}
+            height={28}
+            style={{ borderRadius: 6 }}
+          />
+          <Text
+            fontSize="sm"
+            fontWeight="700"
+            letterSpacing="0.28em"
+            textTransform="uppercase"
+            display={{ base: 'none', sm: 'block' }}
+          >
+            Drake&apos;s Software Solutions
+          </Text>
         </Link>
-        <Flex as="nav" gap={5} fontSize="xs" fontWeight="600" letterSpacing="0.16em" textTransform="uppercase">
-          {['about', 'experience', 'projects', 'contact'].map((id) => (
+        <HStack as="nav" gap={5} fontSize="xs" fontWeight="600" letterSpacing="0.16em" textTransform="uppercase">
+          {NAV_SECTIONS.map((id) => (
             <Link
               key={id}
               href={`#${id}`}
-              _hover={{ color: 'accentGreen' }}
+              _hover={{ color: 'accentRed' }}
+              display={{ base: id === 'contact' ? 'inline' : 'none', md: 'inline' }}
             >
               {id[0].toUpperCase() + id.slice(1)}
             </Link>
           ))}
-        </Flex>
+        </HStack>
       </Flex>
 
       {hidden && (
@@ -73,8 +91,8 @@ export default function Navbar() {
           right={6}
           aria-label="Back to top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          bg="rgba(0,224,166,0.16)"
-          _hover={{ bg: 'rgba(0,224,166,0.28)' }}
+          bg="rgba(220,38,38,0.18)"
+          _hover={{ bg: 'rgba(220,38,38,0.32)' }}
           backdropFilter="blur(10px)"
           size="md"
         >

@@ -1,17 +1,17 @@
 'use client';
 
+import { Box, VStack } from '@chakra-ui/react';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
-import Experience from '../components/sections/Experience';
-import CareerCalendar from '../components/sections/CareerCalendar';
+import Services from '../components/sections/Services';
+import Process from '../components/sections/Process';
+import CaseStudies from '../components/sections/CaseStudies';
+import TechStrip from '../components/sections/TechStrip';
 import SkillTree from '../components/sections/SkillTree';
+import FAQ from '../components/sections/FAQ';
 import Contact from '../components/sections/Contact';
 import Footer from '../components/ui/Footer';
-import { Box, VStack } from '@chakra-ui/react';
 import { siteTheme } from '../lib/siteTheme';
-import ScrollStory from '../components/ui/ScrollStory';
-import ViewerPaths from '../components/ui/ViewerPaths';
-import PerformanceStrip from '../components/sections/PerformanceStrip';
 import '../styles/globals.css';
 
 export default function HomePage() {
@@ -19,24 +19,30 @@ export default function HomePage() {
     <main>
       <Hero />
 
-      <VStack gap={siteTheme.sectionGap} align="stretch" px={siteTheme.sectionPx} py={siteTheme.sectionPy}>
-        <ViewerPaths />
-
+      <VStack
+        gap={siteTheme.sectionGap}
+        align="stretch"
+        px={siteTheme.sectionPx}
+        py={siteTheme.sectionPy}
+      >
         <About />
 
-        <ScrollStory />
+        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
+        <Services />
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
-        <Experience />
+        <Process />
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
-        <CareerCalendar />
+        <CaseStudies />
 
-        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
-        <PerformanceStrip />
+        <TechStrip />
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <SkillTree />
+
+        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
+        <FAQ />
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <Contact />

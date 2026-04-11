@@ -1,54 +1,62 @@
 'use client';
 
-import {
-  Container,
-  VStack,
-  Text,
-  Link as ChakraLink,
-} from '@chakra-ui/react';
+import { Container, VStack, Text, Link as ChakraLink, Icon, HStack } from '@chakra-ui/react';
+import { EnvelopeIcon } from '@heroicons/react/24/outline';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FadeIn } from '../motion/FadeIn';
 import SectionHeading from '../ui/SectionHeading';
 
+// TODO: replace with real contact info before deploying
+const EMAIL = 'hello@drakessoftwaresolutions.com';
+const GITHUB = 'https://github.com/TODO';
+const LINKEDIN = 'https://linkedin.com/in/TODO';
+
 export default function Contact() {
   return (
-    <Container as="section" id="contact" py={0}>
+    <Container as="section" id="contact" py={0} maxW="4xl">
       <FadeIn>
         <SectionHeading
           label="Contact"
-          title="Open to desktop, Android, and security-focused work."
-          description="Email is the fastest way to reach me :)"
+          title="Have a project in mind?"
+          description="Email is the fastest way to reach the studio. Tell me about your goals, timeline, and what you&rsquo;d like built — I&rsquo;ll reply within one business day."
         />
-        <VStack align="start" gap={4} fontSize="lg">
-          <Text>
+        <VStack align="start" gap={5} fontSize="lg">
+          <HStack gap={3}>
+            <Icon as={EnvelopeIcon} boxSize={5} color="accentRed" />
             <ChakraLink
-              href="mailto:mahmoudelfeelig@gmail.com"
+              href={`mailto:${EMAIL}`}
               textDecoration="underline"
-              _hover={{ color: 'accentGreen' }}
+              _hover={{ color: 'accentRed' }}
             >
-              mahmoudelfeelig@gmail.com
+              {EMAIL}
             </ChakraLink>
-          </Text>
-          <Text>
+          </HStack>
+          <HStack gap={3}>
+            <Icon as={FaGithub} boxSize={5} color="accentRed" />
             <ChakraLink
-              href="https://github.com/mahmoudelfeelig"
+              href={GITHUB}
               target="_blank"
               rel="noopener noreferrer"
               textDecoration="underline"
-              _hover={{ color: 'accentGreen' }}
+              _hover={{ color: 'accentRed' }}
             >
-              github.com/mahmoudelfeelig
+              GitHub
             </ChakraLink>
-          </Text>
-          <Text>
+          </HStack>
+          <HStack gap={3}>
+            <Icon as={FaLinkedin} boxSize={5} color="accentRed" />
             <ChakraLink
-              href="https://elfeel.me"
+              href={LINKEDIN}
               target="_blank"
               rel="noopener noreferrer"
               textDecoration="underline"
-              _hover={{ color: 'accentGreen' }}
+              _hover={{ color: 'accentRed' }}
             >
-              elfeel.me
+              LinkedIn
             </ChakraLink>
+          </HStack>
+          <Text fontSize="sm" color="gray.500" pt={2}>
+            Currently taking on a limited number of new projects. Mention your timeline in the first email.
           </Text>
         </VStack>
       </FadeIn>

@@ -6,11 +6,12 @@ import { shaderMaterial } from '@react-three/drei';
 import { useRef } from 'react';
 
 /* ---------- WaveMaterial definition ---------- */
+// Dragon-forge palette: deep black → crimson wave with flame edges.
 const WaveMaterial = shaderMaterial(
   {
     time: 0,
-    color1: new THREE.Color('#4B3F72'),
-    color2: new THREE.Color('#E3DFFF'),
+    color1: new THREE.Color('#0a0a0a'),
+    color2: new THREE.Color('#dc2626'),
   },
   /* vertex shader */ `
     uniform float time;

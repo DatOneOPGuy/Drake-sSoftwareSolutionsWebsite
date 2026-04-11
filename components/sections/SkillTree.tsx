@@ -9,73 +9,60 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Collapse } from '@chakra-ui/transition';
-import { Progress } from '@chakra-ui/progress';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import SectionHeading from '../ui/SectionHeading';
 
-const skills = [
+type Skill = {
+  skill: string;
+  summary: string;
+  techStack: Record<string, string[]>;
+};
+
+const skills: Skill[] = [
   {
-    skill: 'Full-Stack Development',
-    proficiency: 95,
-    summary: 'Building web applications with clean architecture and solid performance',
+    skill: 'Custom Software',
+    summary: 'Internal tools, automation, backend services, and APIs that disappear into the business once they ship.',
     techStack: {
-      React: ['Next.js', 'Framer Motion', 'Chakra UI'],
-      JavaScript: ['Node.js', 'Express'],
-      CSS: ['Tailwind'],
-      HTML: [],
+      TypeScript: ['Node.js', 'Express', 'Next.js API routes'],
+      Python: ['FastAPI', 'Scripting', 'Data pipelines'],
+      Databases: ['PostgreSQL', 'SQLite', 'Firestore'],
     },
   },
   {
-    skill: 'iOS Development',
-    proficiency: 90,
-    summary: 'Custom iOS applications with a focus on user experience',
+    skill: 'Mobile Development',
+    summary: 'Native iOS and Android apps built for performance and a first-class feel on each platform.',
     techStack: {
-      Swift: ['SwiftUI', 'UIKit'],
+      iOS: ['Swift', 'SwiftUI', 'UIKit'],
+      Android: ['Kotlin', 'Jetpack Compose'],
+      'Cross-platform': ['React Native (when it fits)'],
     },
   },
   {
-    skill: 'Data Analysis & Computer Vision',
-    proficiency: 85,
-    summary: 'Data analysis and computer vision workflows with YOLO',
+    skill: 'AI Integration',
+    summary: 'Adding LLM features, RAG pipelines, and workflow automation to existing products without the fluff.',
     techStack: {
-      Python: ['Pandas', 'Matplotlib', 'YOLO', 'NumPy'],
+      LLMs: ['OpenAI', 'Anthropic', 'Local models'],
+      Tooling: ['Vector stores', 'Embeddings', 'Function calling'],
+      Python: ['LangChain alternatives', 'Agent frameworks'],
     },
   },
   {
-    skill: 'Game Development',
-    proficiency: 75,
-    summary: 'Game development with Godot and/or Unity',
+    skill: 'Cybersecurity',
+    summary: 'Security reviews, hardening, and secure-by-default architecture for products that handle real user data.',
     techStack: {
-      Godot: ['GDScript', 'Godot Physics'],
-      Unity: ['C#', 'Unity Physics'],
+      Areas: ['Threat modeling', 'Auth & session design', 'Secrets management'],
+      Tooling: ['Wireshark', 'Linux', 'Burp Suite'],
+      Networking: ['TCP/IP', 'DNS', 'TLS'],
     },
   },
   {
-    skill: 'Network Security',
-    proficiency: 80,
-    summary: 'Network infrastructure and security',
+    skill: 'Web Development',
+    summary: 'Marketing sites, dashboards, and web apps with a focus on performance, accessibility, and polish.',
     techStack: {
-      Wireshark: [],
-      Linux: ['Ubuntu', 'Kali'],
-      Networking: ['TCP/IP', 'OSI Layers', 'DHCP', 'DNS'],
-    },
-  },
-  {
-    skill: 'Competitive Programming',
-    proficiency: 70,
-    summary: 'Problem solving and algorithm design',
-    techStack: {
-      Java: [],
-    },
-  },
-  {
-    skill: 'UI/UX & Animation',
-    proficiency: 70,
-    summary: 'Motion design & interaction-first UI with a creative eye',
-    techStack: {
-        Figma: [],
-        'Framer Motion': [],
+      Frontend: ['React', 'Next.js', 'TypeScript'],
+      Styling: ['Tailwind', 'Chakra UI', 'Framer Motion'],
+      Infra: ['Vercel', 'Cloudflare', 'Docker'],
     },
   },
 ];
@@ -97,12 +84,12 @@ export default function SkillTree() {
   };
 
   return (
-    <Box as="section" id="skills" py={0} px={0}>
+    <Box as="section" id="stack" py={0} px={0}>
       <Box maxW="6xl" mx="auto">
         <SectionHeading
-          label="Skills"
-          title="A practical stack for product, platform, and security work."
-          description="The focus is not breadth for its own sake. It is being able to ship the right thing in the right place."
+          label="Capabilities"
+          title="A focused stack across product, platform, and security work."
+          description="Breadth only where it helps. Depth where it matters — shipping the right thing in the right place."
           align="center"
         />
       </Box>
@@ -112,20 +99,19 @@ export default function SkillTree() {
         maxW="6xl"
         mx="auto"
       >
-        {skills.map(({ skill, summary, proficiency, techStack }) => (
+        {skills.map(({ skill, summary, techStack }) => (
           <Box
             key={skill}
             p={5}
             borderRadius="2xl"
             border="1px solid"
             borderColor="whiteAlpha.100"
-            bg="rgba(10, 14, 22, 0.7)"
-            _hover={{ borderColor: 'whiteAlpha.200', transform: 'translateY(-2px)' }}
+            bg="rgba(12, 8, 10, 0.7)"
+            _hover={{ borderColor: 'accentRed', transform: 'translateY(-2px)' }}
             transition="all 0.2s ease"
-            boxShadow="0 12px 30px rgba(0, 0, 0, 0.16)"
-
+            boxShadow="0 12px 30px rgba(0, 0, 0, 0.35)"
           >
-            <Box h="1px" w="2.5rem" mb={3} bgGradient="linear(to-r, accentGreen, accentLight)" />
+            <Box h="2px" w="2.5rem" mb={3} bgGradient="linear(to-r, accentRed, accentFlame)" />
             <Button
               variant="ghost"
               onClick={() => toggleSkill(skill)}
@@ -133,9 +119,10 @@ export default function SkillTree() {
               justifyContent="space-between"
               fontWeight="bold"
               fontSize="lg"
-              color="accentLight"
+              color="white"
               display="flex"
               alignItems="center"
+              _hover={{ color: 'accentRed' }}
             >
               <span style={{ flex: 1, textAlign: 'left' }}>{skill}</span>
               <Icon
@@ -146,16 +133,9 @@ export default function SkillTree() {
             </Button>
 
             <Collapse in={openSkills.has(skill)} animateOpacity>
-              <Text fontSize="sm" mt={3} mb={2} color="gray.400">
+              <Text fontSize="sm" mt={3} mb={3} color="gray.400" lineHeight="1.7">
                 {summary}
               </Text>
-              <Progress
-                value={proficiency}
-                colorScheme="green"
-                borderRadius="md"
-                size="sm"
-                mb={3}
-              />
               <VStack align="start" gap={2}>
                 {Object.entries(techStack).map(([tech, libs]) => {
                   const key = `${skill}-${tech}`;
@@ -164,12 +144,11 @@ export default function SkillTree() {
                     <Box key={key} width="100%">
                       <Button
                         variant="ghost"
-                        color="accentGreen"
+                        color="accentRed"
                         fontWeight="normal"
                         size="sm"
                         justifyContent="start"
                         onClick={isExpandable ? () => toggleSub(key) : undefined}
-                        _hover={{ textDecoration: isExpandable ? 'none' : 'default' }}
                         cursor={isExpandable ? 'pointer' : 'default'}
                       >
                         {isExpandable && (
@@ -196,7 +175,7 @@ export default function SkillTree() {
                             color="gray.300"
                           >
                             {libs.map((lib: string) => (
-                              <Text key={lib}>- {lib}</Text>
+                              <Text key={lib}>— {lib}</Text>
                             ))}
                           </VStack>
                         </Collapse>
