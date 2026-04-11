@@ -341,7 +341,9 @@ export default function CareerCalendar() {
                   border="2px solid"
                   borderColor="rgba(6, 10, 16, 0.94)"
                   boxShadow={isActive ? '0 0 0 8px rgba(0, 182, 124, 0.16)' : '0 0 0 5px rgba(191, 224, 255, 0.08)'}
-                  transition="all .18s ease"
+                  transitionProperty="transform, width, height, box-shadow, background-color"
+                  transitionDuration="0.18s"
+                  transitionTimingFunction="ease"
                   _hover={{ transform: 'translate(-50%, -50%) scale(1.08)' }}
                   _focusVisible={{ outline: 'none', boxShadow: '0 0 0 8px rgba(0, 182, 124, 0.22)' }}
                   aria-label={`Show ${repo.name}`}
