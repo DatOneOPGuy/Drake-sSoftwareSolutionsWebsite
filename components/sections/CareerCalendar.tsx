@@ -28,6 +28,7 @@ type ApiResponse = {
 const GRAPH_PADDING = 6;
 const LANE_HEIGHT = 70;
 const MAX_LANES = 5;
+const MotionButton = motion.create(Button);
 
 function yearOf(dateValue: string) {
   return new Date(dateValue).getFullYear().toString();
@@ -318,9 +319,8 @@ export default function CareerCalendar() {
             {graphModel.points.map(({ repo, left, top }, index) => {
               const isActive = repo.name === activeRepo?.name;
               return (
-                <Box
+                <MotionButton
                   key={repo.name}
-                  as={motion.button}
                   type="button"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -334,6 +334,8 @@ export default function CareerCalendar() {
                   transform="translate(-50%, -50%)"
                   w={isActive ? '1.15rem' : '0.85rem'}
                   h={isActive ? '1.15rem' : '0.85rem'}
+                  minW={0}
+                  p={0}
                   borderRadius="full"
                   bg={isActive ? 'accentGreen' : 'accentLight'}
                   border="2px solid"
@@ -347,7 +349,7 @@ export default function CareerCalendar() {
                   <VisuallyHidden as="span">
                     {repo.name}
                   </VisuallyHidden>
-                </Box>
+                </MotionButton>
               );
             })}
 
