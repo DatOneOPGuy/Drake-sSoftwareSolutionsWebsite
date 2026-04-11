@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { fetchGithubRepos } from '../../../../lib/githubPortfolioData';
 
+export const runtime = 'edge';
+
 export async function GET() {
   try {
     const repos = await fetchGithubRepos();
