@@ -105,11 +105,11 @@ export default function SkillTree() {
             p={5}
             borderRadius="2xl"
             border="1px solid"
-            borderColor="whiteAlpha.100"
-            bg="rgba(12, 8, 10, 0.7)"
+            borderColor="borderSoft"
+            bg="bgCard"
             _hover={{ borderColor: 'accentRed', transform: 'translateY(-2px)' }}
             transition="all 0.2s ease"
-            boxShadow="0 12px 30px rgba(0, 0, 0, 0.35)"
+            boxShadow="0 12px 30px rgba(0, 0, 0, 0.18)"
           >
             <Box h="2px" w="2.5rem" mb={3} bgGradient="linear(to-r, accentRed, accentFlame)" />
             <Button
@@ -119,7 +119,7 @@ export default function SkillTree() {
               justifyContent="space-between"
               fontWeight="bold"
               fontSize="lg"
-              color="white"
+              color="textPrimary"
               display="flex"
               alignItems="center"
               _hover={{ color: 'accentRed' }}
@@ -133,7 +133,7 @@ export default function SkillTree() {
             </Button>
 
             <Collapse in={openSkills.has(skill)} animateOpacity>
-              <Text fontSize="sm" mt={3} mb={3} color="gray.400" lineHeight="1.7">
+              <Text fontSize="sm" mt={3} mb={3} color="textMuted" lineHeight="1.7">
                 {summary}
               </Text>
               <VStack align="start" gap={2}>
@@ -172,7 +172,7 @@ export default function SkillTree() {
                             align="start"
                             gap={1}
                             fontSize="sm"
-                            color="gray.300"
+                            color="textMuted"
                           >
                             {libs.map((lib: string) => (
                               <Text key={lib}>— {lib}</Text>

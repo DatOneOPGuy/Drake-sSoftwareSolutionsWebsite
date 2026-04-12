@@ -15,7 +15,7 @@ export default function About() {
             description="Drake's Software Solutions is a freelance software development studio based in South Carolina, helping founders and teams turn ideas into precise, maintainable software."
           />
 
-          <Text fontSize="lg" color="gray.300" lineHeight="1.8">
+          <Text fontSize="lg" color="textMuted" lineHeight="1.8">
             I&apos;m Drake — a software engineer and Computer Science student at Wofford College with hands-on
             experience building security software, native mobile apps, and AI-powered tools. I partner with
             founders, small teams, and non-technical clients from first sketch all the way through shipping
@@ -24,10 +24,10 @@ export default function About() {
 
           <Box pl={4} borderLeft="2px solid" borderColor="accentRed" opacity={0.95}>
             <VStack align="start" gap={3}>
-              <Text color="gray.300" fontSize="md">— Custom software, internal tools, and backend services</Text>
-              <Text color="gray.300" fontSize="md">— Native iOS (Swift/SwiftUI) and Android (Kotlin) development</Text>
-              <Text color="gray.300" fontSize="md">— AI integration: LLM features, RAG pipelines, workflow automation</Text>
-              <Text color="gray.300" fontSize="md">— Security reviews, hardening, and secure-by-default architecture</Text>
+              <Text color="textMuted" fontSize="md">— Custom software, internal tools, and backend services</Text>
+              <Text color="textMuted" fontSize="md">— Native iOS (Swift/SwiftUI) and Android (Kotlin) development</Text>
+              <Text color="textMuted" fontSize="md">— AI integration: LLM features, RAG pipelines, workflow automation</Text>
+              <Text color="textMuted" fontSize="md">— Security reviews, hardening, and secure-by-default architecture</Text>
             </VStack>
           </Box>
         </VStack>

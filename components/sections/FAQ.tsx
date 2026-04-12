@@ -55,8 +55,8 @@ export default function FAQ() {
                 key={i}
                 borderRadius="xl"
                 border="1px solid"
-                borderColor={isOpen ? 'accentRed' : 'whiteAlpha.100'}
-                bg="rgba(12, 8, 10, 0.68)"
+                borderColor={isOpen ? 'accentRed' : 'borderSoft'}
+                bg="bgCard"
                 transition="border-color .2s ease"
               >
                 <Button
@@ -68,9 +68,9 @@ export default function FAQ() {
                   px={5}
                   fontSize="md"
                   fontWeight="600"
-                  color="white"
+                  color="textPrimary"
                   textAlign="left"
-                  _hover={{ bg: 'whiteAlpha.50' }}
+                  _hover={{ bg: 'blackAlpha.50' }}
                 >
                   <Text as="span" flex={1} textAlign="left">
                     {q}
@@ -79,7 +79,7 @@ export default function FAQ() {
                 </Button>
                 <Collapse in={isOpen} animateOpacity>
                   <Box px={5} pb={5}>
-                    <Text color="gray.300" fontSize="sm" lineHeight="1.8" dangerouslySetInnerHTML={{ __html: a }} />
+                    <Text color="textMuted" fontSize="sm" lineHeight="1.8" dangerouslySetInnerHTML={{ __html: a }} />
                   </Box>
                 </Collapse>
               </Box>

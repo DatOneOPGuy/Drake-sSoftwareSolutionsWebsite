@@ -27,11 +27,11 @@ export default function SectionHeading({
       >
         {label}
       </Text>
-      <Heading as="h2" fontSize={{ base: '2xl', md: '3xl' }} lineHeight="1.05" color="white" textAlign={align}>
+      <Heading as="h2" fontSize={{ base: '2xl', md: '3xl' }} lineHeight="1.05" color="textPrimary" textAlign={align}>
         {title}
       </Heading>
       {description && (
-        <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.300" maxW="2xl" textAlign={align}>
+        <Text fontSize={{ base: 'md', md: 'lg' }} color="textMuted" maxW="2xl" textAlign={align}>
           {description}
         </Text>
       )}

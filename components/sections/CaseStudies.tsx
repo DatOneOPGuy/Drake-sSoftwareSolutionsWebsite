@@ -66,8 +66,8 @@ export default function CaseStudies() {
               p={6}
               borderRadius="2xl"
               border="1px dashed"
-              borderColor="whiteAlpha.200"
-              bg="rgba(12, 8, 10, 0.6)"
+              borderColor="borderMedium"
+              bg="bgCard"
               transition="all .2s ease"
               _hover={{ borderColor: 'accentRed', transform: 'translateY(-2px)' }}
             >
@@ -87,18 +87,18 @@ export default function CaseStudies() {
                   >
                     {cs.tag}
                   </Badge>
-                  <Text fontSize="xs" color="gray.500" letterSpacing="0.12em" textTransform="uppercase">
+                  <Text fontSize="xs" color="textFaint" letterSpacing="0.12em" textTransform="uppercase">
                     Placeholder
                   </Text>
                 </HStack>
-                <Heading as="h3" size="md" color="white">
+                <Heading as="h3" size="md" color="textPrimary">
                   {cs.title}
                 </Heading>
-                <Text color="gray.400" fontSize="sm" lineHeight="1.7">
+                <Text color="textMuted" fontSize="sm" lineHeight="1.7">
                   {cs.problem}
                 </Text>
                 <Box>
-                  <Text fontSize="xs" color="gray.500" letterSpacing="0.12em" textTransform="uppercase" mb={2}>
+                  <Text fontSize="xs" color="textFaint" letterSpacing="0.12em" textTransform="uppercase" mb={2}>
                     Stack
                   </Text>
                   <HStack gap={2} flexWrap="wrap">
@@ -106,10 +106,10 @@ export default function CaseStudies() {
                       <Text
                         key={t}
                         fontSize="xs"
-                        color="gray.300"
+                        color="textMuted"
                         px={2}
                         py={1}
-                        bg="whiteAlpha.50"
+                        bg="bgCardStrong"
                         borderRadius="md"
                       >
                         {t}
@@ -118,12 +118,12 @@ export default function CaseStudies() {
                   </HStack>
                 </Box>
                 <Box>
-                  <Text fontSize="xs" color="gray.500" letterSpacing="0.12em" textTransform="uppercase" mb={2}>
+                  <Text fontSize="xs" color="textFaint" letterSpacing="0.12em" textTransform="uppercase" mb={2}>
                     Outcomes
                   </Text>
                   <VStack align="start" gap={1.5}>
                     {cs.outcomes.map((o) => (
-                      <Text key={o} fontSize="xs" color="gray.400">
+                      <Text key={o} fontSize="xs" color="textSubtle">
                         — {o}
                       </Text>
                     ))}

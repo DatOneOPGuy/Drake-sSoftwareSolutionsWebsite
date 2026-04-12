@@ -70,8 +70,8 @@ export default function Services() {
               p={6}
               borderRadius="2xl"
               border="1px solid"
-              borderColor="whiteAlpha.100"
-              bg="rgba(12, 8, 10, 0.72)"
+              borderColor="borderSoft"
+              bg="bgCard"
               transition="all .2s ease"
               _hover={{
                 borderColor: 'accentRed',
@@ -89,15 +89,15 @@ export default function Services() {
                 >
                   <Icon as={icon} boxSize={6} color="accentRed" />
                 </Box>
-                <Heading as="h3" size="md" color="white">
+                <Heading as="h3" size="md" color="textPrimary">
                   {title}
                 </Heading>
-                <Text color="gray.300" fontSize="sm" lineHeight="1.7">
+                <Text color="textMuted" fontSize="sm" lineHeight="1.7">
                   {description}
                 </Text>
                 <VStack align="start" gap={1.5} pt={1}>
                   {highlights.map((h) => (
-                    <Text key={h} color="gray.400" fontSize="xs">
+                    <Text key={h} color="textSubtle" fontSize="xs">
                       — {h}
                     </Text>
                   ))}

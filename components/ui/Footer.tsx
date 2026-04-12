@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Link, IconButton, Icon, VStack, HStack } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 import {
   ArrowUpIcon,
   EnvelopeIcon,
@@ -16,25 +17,30 @@ const LINKEDIN = 'https://linkedin.com/in/TODO';
 
 export default function Footer() {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => setVisible(window.scrollY > 400);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const year = new Date().getFullYear();
+  const isLight = mounted && resolvedTheme === 'light';
+  const logoSrc = isLight ? '/logo-light.png' : '/logo-dark.png';
 
   return (
     <Box
       as="footer"
       mt={32}
       borderTop="1px solid"
-      borderColor="whiteAlpha.100"
-      bg="rgba(7,7,9,0.6)"
+      borderColor="borderSoft"
+      bg="bgFooter"
       py={12}
       fontSize="sm"
-      color="rgba(230,237,247,0.76)"
+      color="textMuted"
     >
       <Flex
         maxW="5xl"
@@ -46,16 +52,18 @@ export default function Footer() {
         gap={6}
       >
         <HStack gap={3} align="center">
-          <Image
-            src="/logo-dark.png"
-            alt="Drake's Software Solutions"
-            width={36}
-            height={36}
-            style={{ borderRadius: 6 }}
-          />
+          {mounted && (
+            <Image
+              src={logoSrc}
+              alt="Drake's Software Solutions"
+              width={36}
+              height={36}
+              style={{ borderRadius: 6, height: 'auto' }}
+            />
+          )}
           <VStack align={{ base: 'center', md: 'start' }} gap={0}>
-            <Text fontWeight="600" color="white">Drake&apos;s Software Solutions</Text>
-            <Text fontSize="xs" opacity={0.6}>
+            <Text fontWeight="600" color="textPrimary">Drake&apos;s Software Solutions</Text>
+            <Text fontSize="xs" opacity={0.7}>
               © {year} — Precision-built software. Delivered.
             </Text>
           </VStack>

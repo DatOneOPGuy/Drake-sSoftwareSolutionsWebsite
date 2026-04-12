@@ -3,9 +3,55 @@
   --hero-gradient-radius: 36%;
   --hero-title-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
   --hero-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Accent palette — identical in both themes */
   --dss-red: #dc2626;
   --dss-red-deep: #7f1d1d;
   --dss-flame: #f97316;
+
+  /* --- DARK MODE (default) --- */
+  --bg-base: #070708;
+  --bg-card: rgba(12, 8, 10, 0.68);
+  --bg-card-strong: rgba(8, 6, 8, 0.78);
+  --bg-nav: rgba(7, 7, 9, 0.78);
+  --bg-footer: rgba(7, 7, 9, 0.6);
+
+  --text-primary: #ffffff;
+  --text-muted: rgba(230, 237, 247, 0.82);
+  --text-subtle: rgba(230, 237, 247, 0.6);
+  --text-faint: rgba(230, 237, 247, 0.45);
+
+  --border-soft: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.22);
+
+  --pill-border: rgba(220, 38, 38, 0.4);
+  --pill-bg: rgba(220, 38, 38, 0.08);
+  --card-hover-shadow: 0 20px 40px rgba(220, 38, 38, 0.08);
+
+  --grid-line: rgba(255, 255, 255, 0.025);
+  --grid-mask-to: transparent 78%;
+}
+
+html.light {
+  --bg-base: #f7f5f2;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-strong: rgba(255, 255, 255, 0.94);
+  --bg-nav: rgba(247, 245, 242, 0.82);
+  --bg-footer: rgba(247, 245, 242, 0.7);
+
+  --text-primary: #0a0a0a;
+  --text-muted: rgba(10, 10, 12, 0.78);
+  --text-subtle: rgba(10, 10, 12, 0.55);
+  --text-faint: rgba(10, 10, 12, 0.4);
+
+  --border-soft: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.16);
+
+  --pill-border: rgba(220, 38, 38, 0.4);
+  --pill-bg: rgba(220, 38, 38, 0.06);
+  --card-hover-shadow: 0 20px 40px rgba(220, 38, 38, 0.12);
+
+  --grid-line: rgba(0, 0, 0, 0.04);
 }
 
 html,
@@ -21,11 +67,19 @@ html {
 
 body {
   margin: 0;
-  color: #e6edf7;
+  color: var(--text-primary);
   background:
     radial-gradient(circle at top, rgba(220, 38, 38, 0.14), transparent 34%),
     radial-gradient(circle at 85% 0%, rgba(249, 115, 22, 0.10), transparent 30%),
     linear-gradient(180deg, #050608 0%, #0a0708 52%, #070506 100%);
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+html.light body {
+  background:
+    radial-gradient(circle at top, rgba(220, 38, 38, 0.09), transparent 36%),
+    radial-gradient(circle at 85% 0%, rgba(249, 115, 22, 0.05), transparent 32%),
+    linear-gradient(180deg, #faf8f5 0%, #f3f1ec 52%, #ecebe6 100%);
 }
 
 body::before {
@@ -34,8 +88,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 78%);
   opacity: 0.5;
@@ -55,6 +109,9 @@ body::before {
 }
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.03);
+}
+html.light ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .shape-divider {

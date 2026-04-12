@@ -44,8 +44,8 @@ export default function Process() {
               p={6}
               borderRadius="2xl"
               border="1px solid"
-              borderColor="whiteAlpha.100"
-              bg="rgba(12, 8, 10, 0.68)"
+              borderColor="borderSoft"
+              bg="bgCard"
               transition="all .2s ease"
               _hover={{ borderColor: 'accentRed', transform: 'translateY(-2px)' }}
             >
@@ -61,10 +61,10 @@ export default function Process() {
                   </Text>
                   <Box flex={1} h="1px" bgGradient="linear(to-r, accentRed, transparent)" opacity={0.5} />
                 </HStack>
-                <Heading as="h3" size="md" color="white">
+                <Heading as="h3" size="md" color="textPrimary">
                   {title}
                 </Heading>
-                <Text color="gray.400" fontSize="sm" lineHeight="1.7">
+                <Text color="textMuted" fontSize="sm" lineHeight="1.7">
                   {description}
                 </Text>
               </VStack>

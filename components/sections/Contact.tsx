@@ -55,7 +55,7 @@ export default function Contact() {
               LinkedIn
             </ChakraLink>
           </HStack>
-          <Text fontSize="sm" color="gray.500" pt={2}>
+          <Text fontSize="sm" color="textSubtle" pt={2}>
             Currently taking on a limited number of new projects. Mention your timeline in the first email.
           </Text>
         </VStack>

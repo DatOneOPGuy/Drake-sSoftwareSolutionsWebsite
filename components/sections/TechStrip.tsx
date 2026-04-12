@@ -25,8 +25,8 @@ export default function TechStrip() {
           px={6}
           borderRadius="2xl"
           border="1px solid"
-          borderColor="whiteAlpha.100"
-          bg="rgba(8, 6, 8, 0.72)"
+          borderColor="borderSoft"
+          bg="bgCardStrong"
         >
           <Text
             fontSize="xs"
@@ -50,9 +50,9 @@ export default function TechStrip() {
               <Text
                 key={name}
                 fontSize={{ base: 'sm', md: 'md' }}
-                color="gray.400"
+                color="textSubtle"
                 transition="color .2s ease"
-                _hover={{ color: 'white' }}
+                _hover={{ color: 'textPrimary' }}
                 letterSpacing="0.04em"
               >
                 {name}
