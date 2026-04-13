@@ -34,10 +34,10 @@ export const system = createSystem(defaultConfig, config);
 
 export function Provider({ children }: PropsWithChildren) {
   return (
-    <ChakraProvider value={system}>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <ChakraProvider value={system}>
         {children}
-      </ThemeProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+    </ThemeProvider>
   );
 }

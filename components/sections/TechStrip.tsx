@@ -4,16 +4,18 @@ import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import { FadeIn } from '../motion/FadeIn';
 
 const TECH = [
+  'Python',
+  'TypeScript',
   'Swift',
-  'Kotlin',
+  'Rust',
+  'C#',
   'React',
   'Next.js',
-  'TypeScript',
-  'Python',
-  'Node.js',
-  'PostgreSQL',
-  'AWS',
+  'FastAPI',
   'Docker',
+  'Godot',
+  'NumPy',
+  '.NET',
 ];
 
 export default function TechStrip() {

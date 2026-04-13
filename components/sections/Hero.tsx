@@ -1,152 +1,72 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Box, Text, Button, Link, HStack, VStack, Grid, GridItem, Icon } from '@chakra-ui/react';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
-import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import { Box, Text, Button, Link, HStack, VStack, Icon } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import styles from './hero.module.css';
 
-const PILLS = ['Custom Software', 'Mobile', 'AI Integration', 'Cybersecurity', 'Web'];
-
 export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
-  useEffect(() => setMounted(true), []);
+  const [scrolled, setScrolled] = useState(false);
 
-  const isLight = mounted && resolvedTheme === 'light';
-  const logoSrc = isLight ? '/logo-light.png' : '/logo-dark.png';
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <section id="top" className={`${styles.wrapper} ${isLight ? styles.wrapperLight : ''}`}>
+    <section id="top" className={styles.wrapper}>
       <div className={styles.overlay} />
 
-      <Box className={styles.heroGrid}>
-        {/* Kicker + logo full width on top */}
-        <VStack align="start" gap={{ base: 4, md: 6 }}>
-          <Text className={styles.kicker}>Freelance software development</Text>
+      {/* Top spacer for navbar */}
+      <Box flexShrink={0} h="4rem" />
 
-          <Box w="100%" display="flex" justifyContent={{ base: 'center', lg: 'flex-start' }}>
-            {mounted && (
-              <Image
-                src={logoSrc}
-                alt="Drake's Software Solutions"
-                width={2790}
-                height={1504}
-                priority
-                quality={95}
-                sizes="(max-width: 768px) 92vw, (max-width: 1280px) 80vw, 1100px"
-                style={{
-                  width: 'clamp(320px, 76vw, 1100px)',
-                  height: 'auto',
-                  display: 'block',
-                }}
-              />
-            )}
-          </Box>
-        </VStack>
+      {/* Main content */}
+      <VStack flex="1" justify="center" align="center" gap={0} position="relative" zIndex={1} px={{ base: 4, md: 6 }}>
+        {/* Use a plain img tag for maximum Safari/cross-browser compatibility */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo-dark.png"
+          alt="Drake's Software Solutions"
+          className={styles.heroLogo}
+          loading="eager"
+          decoding="async"
+        />
 
-        {/* Two-column content below the logo */}
-        <Grid
-          templateColumns={{ base: '1fr', lg: '1.6fr 1fr' }}
-          gap={{ base: 10, lg: 14 }}
-          alignItems="center"
-          mt={{ base: 8, md: 10 }}
-        >
-          <GridItem>
-            <VStack align="start" gap={6}>
-              <h1 className={styles.title}>
-                Precision-built software.
-                <br />
-                Delivered.
-              </h1>
-              <Text className={styles.subtitle}>
-                A freelance software studio shipping custom software, mobile apps, AI-powered
-                tools, and cybersecurity work for founders and small teams that need it done
-                right.
-              </Text>
-              <HStack gap={3} flexWrap="wrap">
-                {PILLS.map((p) => (
-                  <Text key={p} className={styles.pill}>
-                    {p}
-                  </Text>
-                ))}
-              </HStack>
-              <HStack gap={3} pt={1} flexWrap="wrap">
-                <Link href="#contact" _hover={{ textDecoration: 'none' }}>
-                  <Button
-                    bg="accentRed"
-                    color="white"
-                    size="md"
-                    rounded="full"
-                    _hover={{ bg: 'accentRedDeep' }}
-                  >
-                    Start a project
-                  </Button>
-                </Link>
-                <Link href="#work" _hover={{ textDecoration: 'none' }}>
-                  <Button
-                    variant="outline"
-                    borderColor="borderMedium"
-                    color="textPrimary"
-                    size="md"
-                    rounded="full"
-                    _hover={{ bg: 'whiteAlpha.100', borderColor: 'accentRed' }}
-                  >
-                    See our work
-                  </Button>
-                </Link>
-              </HStack>
-            </VStack>
-          </GridItem>
+        <Text className={styles.kicker}>Freelance Software Development</Text>
 
-          <GridItem>
-            <VStack gap={4} align="stretch">
-              {/* Meta card */}
-              <Box className={styles.metaPanel}>
-                <Text className={styles.metaLabel}>Principal</Text>
-                <Text className={styles.metaValue}>Drake Lesher</Text>
-                <Text className={styles.metaDetail}>
-                  Software engineer · CS student at Wofford College
-                </Text>
+        <h1 className={styles.title}>
+          Precision-built software. Delivered.
+        </h1>
 
-                <Box className={styles.metaDivider} />
+        <HStack gap={4} flexWrap="wrap" justify="center" mt={5}>
+          <Link href="#contact" _hover={{ textDecoration: 'none' }}>
+            <Button bg="accentRed" color="white" size="lg" rounded="full" px={8} _hover={{ bg: 'accentRedDeep' }}>
+              Start a project
+            </Button>
+          </Link>
+          <Link href="#about" _hover={{ textDecoration: 'none' }}>
+            <Button variant="outline" borderColor="borderMedium" color="textPrimary" size="lg" rounded="full" px={8} _hover={{ bg: 'whiteAlpha.100', borderColor: 'accentRed' }}>
+              See our work
+            </Button>
+          </Link>
+        </HStack>
+      </VStack>
 
-                <Text className={styles.metaLabel}>Location</Text>
-                <Text className={styles.metaValue}>South Carolina, USA</Text>
-                <Text className={styles.metaDetail}>Remote clients welcome.</Text>
-
-                <Box className={styles.metaDivider} />
-
-                <Text className={styles.metaLabel}>Focus areas</Text>
-                <VStack align="start" gap={1.5} mt={2}>
-                  <Text className={styles.metaBullet}>
-                    — Security software &amp; secure-by-default systems
-                  </Text>
-                  <Text className={styles.metaBullet}>— Native iOS and Android apps</Text>
-                  <Text className={styles.metaBullet}>— AI-powered tools and integrations</Text>
-                </VStack>
-              </Box>
-
-              {/* Availability card */}
-              <Box className={styles.availabilityCard}>
-                <HStack gap={2.5} align="start">
-                  <Icon as={CheckCircleIcon} boxSize={5} color="accentRed" mt="2px" />
-                  <VStack align="start" gap={0.5}>
-                    <Text className={styles.availLabel}>Availability</Text>
-                    <Text className={styles.availValue}>
-                      Taking on new projects
-                    </Text>
-                    <Text className={styles.availDetail}>
-                      Currently booking a limited number of engagements. Mention your timeline
-                      in the first email.
-                    </Text>
-                  </VStack>
-                </HStack>
-              </Box>
-            </VStack>
-          </GridItem>
-        </Grid>
+      {/* Scroll chevron */}
+      <Box
+        flexShrink={0}
+        display="flex"
+        justifyContent="center"
+        pb={6}
+        pt={4}
+        opacity={scrolled ? 0 : 1}
+        transition="opacity 0.4s ease"
+        pointerEvents="none"
+        position="relative"
+        zIndex={1}
+      >
+        <Icon as={ChevronDownIcon} boxSize={7} color="textMuted" className={styles.bounce} />
       </Box>
     </section>
   );

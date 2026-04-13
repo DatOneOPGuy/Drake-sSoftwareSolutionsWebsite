@@ -16,18 +16,20 @@ export default function About() {
           />
 
           <Text fontSize="lg" color="textMuted" lineHeight="1.8">
-            I&apos;m Drake — a software engineer and Computer Science student at Wofford College with hands-on
-            experience building security software, native mobile apps, and AI-powered tools. I partner with
-            founders, small teams, and non-technical clients from first sketch all the way through shipping
-            and support.
+            I&apos;m Drake Lesher — a software engineer and Computer Science graduate of Wofford College
+            currently building cross-platform security software at Resistine, where I work across
+            Python desktop apps, native iOS (Swift), Rust-based antivirus integration, VPN systems,
+            and SIEM monitoring. I partner with founders, small teams, and non-technical clients
+            from first sketch all the way through shipping and support.
           </Text>
 
           <Box pl={4} borderLeft="2px solid" borderColor="accentRed" opacity={0.95}>
             <VStack align="start" gap={3}>
-              <Text color="textMuted" fontSize="md">— Custom software, internal tools, and backend services</Text>
-              <Text color="textMuted" fontSize="md">— Native iOS (Swift/SwiftUI) and Android (Kotlin) development</Text>
-              <Text color="textMuted" fontSize="md">— AI integration: LLM features, RAG pipelines, workflow automation</Text>
-              <Text color="textMuted" fontSize="md">— Security reviews, hardening, and secure-by-default architecture</Text>
+              <Text color="textMuted" fontSize="md">— Security software: endpoint protection, ClamAV, Wazuh SIEM, VPN, encryption</Text>
+              <Text color="textMuted" fontSize="md">— Full-stack web: React, Next.js, FastAPI, TypeScript, Docker, WebSockets</Text>
+              <Text color="textMuted" fontSize="md">— Native mobile: Swift/SwiftUI (iOS), Kotlin (Android)</Text>
+              <Text color="textMuted" fontSize="md">— Data &amp; AI: Monte Carlo simulations, xG models, LLM integrations, NumPy pipelines</Text>
+              <Text color="textMuted" fontSize="md">— Desktop &amp; games: Python (Briefcase), C#/.NET, Rust, Godot (GDScript)</Text>
             </VStack>
           </Box>
         </VStack>

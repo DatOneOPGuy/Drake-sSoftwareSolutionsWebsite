@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Box, Flex, Link, IconButton, Icon, HStack, Text } from '@chakra-ui/react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowUpIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { useTheme } from 'next-themes';
+import { ArrowUpIcon } from '@heroicons/react/24/outline';
 
 const MotionHeader = motion.create(Box);
 
@@ -13,12 +11,6 @@ const NAV_SECTIONS = ['about', 'services', 'process', 'work', 'faq', 'contact'] 
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -30,9 +22,6 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const isLight = mounted && resolvedTheme === 'light';
-  const logoSrc = isLight ? '/logo-light.png' : '/logo-dark.png';
 
   return (
     <MotionHeader
@@ -63,22 +52,21 @@ export default function Navbar() {
           gap={2.5}
           _hover={{ color: 'accentRed', textDecoration: 'none' }}
         >
-          {mounted && (
-            <Image
-              src={logoSrc}
-              alt="Drake's Software Solutions"
-              width={28}
-              height={28}
-              style={{ borderRadius: 6, height: 'auto' }}
-            />
-          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-dark.png"
+            alt=""
+            width={36}
+            height={19}
+            style={{ flexShrink: 0 }}
+          />
           <Text
             fontSize="sm"
             fontWeight="700"
             letterSpacing="0.28em"
             textTransform="uppercase"
-            display={{ base: 'none', sm: 'block' }}
             color="textPrimary"
+            display={{ base: 'none', sm: 'block' }}
           >
             Drake&apos;s Software Solutions
           </Text>
@@ -95,18 +83,6 @@ export default function Navbar() {
               {id[0].toUpperCase() + id.slice(1)}
             </Link>
           ))}
-          {mounted && (
-            <IconButton
-              aria-label="Toggle theme"
-              onClick={() => setTheme(isLight ? 'dark' : 'light')}
-              variant="ghost"
-              size="sm"
-              color="textMuted"
-              _hover={{ color: 'accentRed', bg: 'transparent' }}
-            >
-              <Icon as={isLight ? MoonIcon : SunIcon} boxSize={4} />
-            </IconButton>
-          )}
         </HStack>
       </Flex>
 

@@ -1,6 +1,6 @@
 export const siteTheme = {
   sectionPy: { base: 14, md: 20 },
-  sectionPx: { base: 5, md: 8 },
+  sectionPx: { base: 6, md: 10 },
   sectionGap: { base: 10, md: 14 },
   colors: {
     bgBase: '#070708',

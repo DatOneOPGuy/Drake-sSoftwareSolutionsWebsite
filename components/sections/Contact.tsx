@@ -2,14 +2,13 @@
 
 import { Container, VStack, Text, Link as ChakraLink, Icon, HStack } from '@chakra-ui/react';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
 import { FadeIn } from '../motion/FadeIn';
 import SectionHeading from '../ui/SectionHeading';
 
-// TODO: replace with real contact info before deploying
+// TODO: replace EMAIL with real contact email before deploying
 const EMAIL = 'hello@drakessoftwaresolutions.com';
-const GITHUB = 'https://github.com/TODO';
-const LINKEDIN = 'https://linkedin.com/in/TODO';
+const LINKEDIN = 'https://linkedin.com/in/drakelesher';
 
 export default function Contact() {
   return (
@@ -29,18 +28,6 @@ export default function Contact() {
               _hover={{ color: 'accentRed' }}
             >
               {EMAIL}
-            </ChakraLink>
-          </HStack>
-          <HStack gap={3}>
-            <Icon as={FaGithub} boxSize={5} color="accentRed" />
-            <ChakraLink
-              href={GITHUB}
-              target="_blank"
-              rel="noopener noreferrer"
-              textDecoration="underline"
-              _hover={{ color: 'accentRed' }}
-            >
-              GitHub
             </ChakraLink>
           </HStack>
           <HStack gap={3}>

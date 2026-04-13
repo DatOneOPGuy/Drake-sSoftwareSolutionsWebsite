@@ -21,48 +21,47 @@ type Skill = {
 
 const skills: Skill[] = [
   {
-    skill: 'Custom Software',
-    summary: 'Internal tools, automation, backend services, and APIs that disappear into the business once they ship.',
+    skill: 'Security Software',
+    summary: 'Endpoint protection, antivirus integration, VPN management, and SIEM monitoring — built professionally at Resistine.',
     techStack: {
-      TypeScript: ['Node.js', 'Express', 'Next.js API routes'],
-      Python: ['FastAPI', 'Scripting', 'Data pipelines'],
-      Databases: ['PostgreSQL', 'SQLite', 'Firestore'],
+      'Antivirus': ['ClamAV', 'Rust bindings', 'macOS Endpoint Security Framework'],
+      'Monitoring': ['Wazuh SIEM', 'Log collection', 'Threat detection'],
+      'Networking': ['VPN (macOS/Linux/Windows)', 'TCP/IP', 'DNS', 'TLS'],
+    },
+  },
+  {
+    skill: 'Full-Stack Web',
+    summary: 'Production web apps and APIs with modern frameworks, real-time features, and containerized deployment.',
+    techStack: {
+      Backend: ['FastAPI', 'Node.js', 'Express', 'SQLAlchemy'],
+      Frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
+      Infra: ['Docker', 'nginx', 'WebSockets', 'OAuth'],
     },
   },
   {
     skill: 'Mobile Development',
-    summary: 'Native iOS and Android apps built for performance and a first-class feel on each platform.',
+    summary: 'Native iOS apps built at Resistine with ODOO API integration, network permissions, and WiFi/carrier detection.',
     techStack: {
-      iOS: ['Swift', 'SwiftUI', 'UIKit'],
+      iOS: ['Swift', 'SwiftUI', 'UIKit', 'ODOO API'],
       Android: ['Kotlin', 'Jetpack Compose'],
-      'Cross-platform': ['React Native (when it fits)'],
     },
   },
   {
-    skill: 'AI Integration',
-    summary: 'Adding LLM features, RAG pipelines, and workflow automation to existing products without the fluff.',
+    skill: 'Data Science & AI',
+    summary: 'Monte Carlo simulations, statistical modeling, sports analytics, and LLM integrations with interactive dashboards.',
     techStack: {
-      LLMs: ['OpenAI', 'Anthropic', 'Local models'],
-      Tooling: ['Vector stores', 'Embeddings', 'Function calling'],
-      Python: ['LangChain alternatives', 'Agent frameworks'],
+      Simulation: ['NumPy', 'SciPy', 'Monte Carlo methods'],
+      Visualization: ['Streamlit', 'Plotly', 'Matplotlib'],
+      AI: ['LLM APIs', 'Embeddings', 'Agent frameworks'],
     },
   },
   {
-    skill: 'Cybersecurity',
-    summary: 'Security reviews, hardening, and secure-by-default architecture for products that handle real user data.',
+    skill: 'Desktop & Games',
+    summary: 'Cross-platform desktop apps with plugin architectures and original games built in Godot.',
     techStack: {
-      Areas: ['Threat modeling', 'Auth & session design', 'Secrets management'],
-      Tooling: ['Wireshark', 'Linux', 'Burp Suite'],
-      Networking: ['TCP/IP', 'DNS', 'TLS'],
-    },
-  },
-  {
-    skill: 'Web Development',
-    summary: 'Marketing sites, dashboards, and web apps with a focus on performance, accessibility, and polish.',
-    techStack: {
-      Frontend: ['React', 'Next.js', 'TypeScript'],
-      Styling: ['Tailwind', 'Chakra UI', 'Framer Motion'],
-      Infra: ['Vercel', 'Cloudflare', 'Docker'],
+      Desktop: ['Python (Briefcase)', 'C# / .NET 8', 'Rust'],
+      Games: ['Godot', 'GDScript', 'Phantom Camera'],
+      'CLI Tools': ['Typer', 'Rich', 'Click'],
     },
   },
 ];
