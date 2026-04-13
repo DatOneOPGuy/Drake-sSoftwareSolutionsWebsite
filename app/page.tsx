@@ -10,6 +10,7 @@ import Process from '../components/sections/Process';
 import CaseStudies from '../components/sections/CaseStudies';
 import CodeTerminal from '../components/sections/CodeTerminal';
 import PathfinderGame from '../components/sections/PathfinderGame';
+import GravitySim from '../components/sections/GravitySim';
 import TechStrip from '../components/sections/TechStrip';
 import SkillTree from '../components/sections/SkillTree';
 import FAQ from '../components/sections/FAQ';
@@ -50,6 +51,9 @@ export default function HomePage() {
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <PathfinderGame />
+
+        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
+        <GravitySim />
 
         <TechStrip />
 
