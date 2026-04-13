@@ -3,11 +3,13 @@
 import { Box, VStack } from '@chakra-ui/react';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
+import Stats from '../components/sections/Stats';
 import Services from '../components/sections/Services';
 import AiDemo from '../components/sections/AiDemo';
 import Process from '../components/sections/Process';
 import CaseStudies from '../components/sections/CaseStudies';
 import CodeTerminal from '../components/sections/CodeTerminal';
+import PathfinderGame from '../components/sections/PathfinderGame';
 import TechStrip from '../components/sections/TechStrip';
 import SkillTree from '../components/sections/SkillTree';
 import FAQ from '../components/sections/FAQ';
@@ -30,6 +32,8 @@ export default function HomePage() {
       >
         <About />
 
+        <Stats />
+
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <Services />
 
@@ -43,6 +47,9 @@ export default function HomePage() {
         <CaseStudies />
 
         <CodeTerminal />
+
+        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
+        <PathfinderGame />
 
         <TechStrip />
 
