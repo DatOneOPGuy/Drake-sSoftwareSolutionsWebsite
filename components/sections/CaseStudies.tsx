@@ -61,7 +61,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     title: 'Personal Finance Tracker',
     tag: 'Desktop · .NET',
-    problem: 'A feature-rich console and web application suite for personal finance management — a .NET 8 console app and a companion ASP.NET Razor Pages web app with budget tracking, trend analysis, and smart insights.',
+    problem: 'A feature-rich console and web application suite for personal finance management. A .NET 8 console app and a companion ASP.NET Razor Pages web app with budget tracking, trend analysis, and smart insights.',
     stack: ['C#', '.NET 8/9', 'ASP.NET', 'Razor Pages', 'SQLite'],
     outcomes: [
       'Transaction CRUD with search, categorization, and budget alerts',
@@ -151,7 +151,7 @@ export default function CaseStudies() {
                   <VStack align="start" gap={1.5}>
                     {cs.outcomes.map((o) => (
                       <Text key={o} fontSize="xs" color="textSubtle">
-                        — {o}
+{o}
                       </Text>
                     ))}
                   </VStack>

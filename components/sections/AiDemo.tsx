@@ -17,13 +17,13 @@ const PROMPTS: Prompt[] = [
     label: 'Summarize a doc',
     question: 'Summarize this 40-page contract into key terms and risks.',
     answer:
-      'Key terms: 24-month engagement, net-30 payment, $120K cap. IP assigns on payment. Non-compete limited to 12 months, Southeast US only. Risks flagged: auto-renewal clause (§4.2) — no exit window. Liability cap excludes gross negligence. Recommend negotiating a 60-day termination notice and narrowing the non-compete geography.',
+      'Key terms: 24-month engagement, net-30 payment, $120K cap. IP assigns on payment. Non-compete limited to 12 months, Southeast US only. Risks flagged: auto-renewal clause (§4.2), no exit window. Liability cap excludes gross negligence. Recommend negotiating a 60-day termination notice and narrowing the non-compete geography.',
   },
   {
     label: 'Classify support tickets',
     question: 'Route this ticket: "App crashes when I upload a photo larger than 5MB on Android."',
     answer:
-      'Category: Bug — Mobile (Android)\nPriority: High (crash, data loss risk)\nComponent: Media upload pipeline\nSuggested owner: Mobile team\nRelated tickets: #1847, #2031 (image processing OOM)\nRecommended action: Check heap allocation in ImageCompressor.kt, test with 8MP+ images on low-RAM devices.',
+      'Category: Bug, Mobile (Android)\nPriority: High (crash, data loss risk)\nComponent: Media upload pipeline\nSuggested owner: Mobile team\nRelated tickets: #1847, #2031 (image processing OOM)\nRecommended action: Check heap allocation in ImageCompressor.kt, test with 8MP+ images on low-RAM devices.',
   },
   {
     label: 'Generate SQL',
@@ -35,7 +35,7 @@ const PROMPTS: Prompt[] = [
     label: 'Extract from email',
     question: 'Extract action items from this email thread between the client and PM.',
     answer:
-      'Action items extracted:\n1. Drake — send revised wireframes by Friday EOD\n2. Client (Sarah) — confirm payment terms with legal, reply by Wed\n3. PM (James) — schedule kickoff call for week of 4/21\n4. Drake — set up staging environment and share credentials\n5. Client — provide brand assets (logo SVG, color palette, fonts)\n\nDeadline summary: 2 items due this week, 3 due next week.',
+      'Action items extracted:\n1. Drake: send revised wireframes by Friday EOD\n2. Client (Sarah): confirm payment terms with legal, reply by Wed\n3. PM (James): schedule kickoff call for week of 4/21\n4. Drake: set up staging environment and share credentials\n5. Client: provide brand assets (logo SVG, color palette, fonts)\n\nDeadline summary: 2 items due this week, 3 due next week.',
   },
 ];
 

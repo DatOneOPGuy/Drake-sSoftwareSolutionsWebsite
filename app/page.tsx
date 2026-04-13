@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, VStack } from '@chakra-ui/react';
+import { Box, VStack, Button, Link, Text } from '@chakra-ui/react';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Stats from '../components/sections/Stats';
@@ -54,6 +54,26 @@ export default function HomePage() {
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <GravitySim />
+
+        {/* Link to full playground */}
+        <Box textAlign="center" py={4}>
+          <Link href="/playground" _hover={{ textDecoration: 'none' }}>
+            <Button
+              variant="outline"
+              borderColor="accentRed"
+              color="accentRed"
+              size="lg"
+              rounded="full"
+              px={10}
+              _hover={{ bg: 'rgba(220, 38, 38, 0.12)', borderColor: 'accentFlame' }}
+            >
+              Open the full playground →
+            </Button>
+          </Link>
+          <Text fontSize="xs" color="textFaint" mt={2}>
+            6 more interactive physics &amp; generative art demos
+          </Text>
+        </Box>
 
         <TechStrip />
 

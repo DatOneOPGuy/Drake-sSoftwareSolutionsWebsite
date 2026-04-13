@@ -8,13 +8,12 @@ type ScrambleTextProps = {
   text: string;
   className?: string;
   speed?: number;
-  as?: keyof JSX.IntrinsicElements;
 };
 
-export default function ScrambleText({ text, className, speed = 30, as: Tag = 'span' }: ScrambleTextProps) {
+export default function ScrambleText({ text, className, speed = 30 }: ScrambleTextProps) {
   const [displayed, setDisplayed] = useState(text);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -61,8 +60,8 @@ export default function ScrambleText({ text, className, speed = 30, as: Tag = 's
   };
 
   return (
-    <Tag ref={ref as never} className={className}>
+    <span ref={ref} className={className}>
       {displayed}
-    </Tag>
+    </span>
   );
 }

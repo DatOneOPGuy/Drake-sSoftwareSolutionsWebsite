@@ -20,7 +20,7 @@ const STATS: Stat[] = [
 function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const el = ref.current;

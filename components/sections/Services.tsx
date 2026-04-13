@@ -28,13 +28,13 @@ const SERVICES: Service[] = [
   {
     icon: DevicePhoneMobileIcon,
     title: 'Mobile App Development',
-    description: 'Native iOS (Swift/SwiftUI) and Android (Kotlin) applications — and cross-platform when that fits better.',
-    highlights: ['iOS: Swift / SwiftUI', 'Android: Kotlin', 'App Store & Play launch'],
+    description: 'Native iOS (Swift/SwiftUI) applications, and cross-platform when that fits better.',
+    highlights: ['iOS: Swift / SwiftUI', 'App Store launch'],
   },
   {
     icon: CpuChipIcon,
     title: 'AI Integration',
-    description: 'Add LLM features, RAG pipelines, and workflow automation to existing products — pragmatic, not hype-driven.',
+    description: 'Add LLM features, RAG pipelines, and workflow automation to existing products. Pragmatic, not hype-driven.',
     highlights: ['LLM features & chat', 'RAG / search over your data', 'Workflow automation'],
   },
   {
@@ -98,7 +98,7 @@ export default function Services() {
                 <VStack align="start" gap={1.5} pt={1}>
                   {highlights.map((h) => (
                     <Text key={h} color="textSubtle" fontSize="xs">
-                      — {h}
+{h}
                     </Text>
                   ))}
                 </VStack>

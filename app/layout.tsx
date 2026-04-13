@@ -8,7 +8,7 @@ import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const SITE_TITLE = "Drake's Software Solutions — Precision-built software. Delivered.";
+const SITE_TITLE = "Drake's Software Solutions | Built to last. Shipped on time.";
 const SITE_DESCRIPTION =
   "Freelance software development studio specializing in custom software, mobile apps, AI integration, cybersecurity, and web development. Based in South Carolina.";
 

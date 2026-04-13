@@ -46,7 +46,7 @@ export default function Footer() {
         <VStack align={{ base: 'center', md: 'start' }} gap={0}>
           <Text fontWeight="600" color="textPrimary">Drake&apos;s Software Solutions</Text>
           <Text fontSize="xs" opacity={0.7}>
-            &copy; {year} &mdash; Precision-built software. Delivered.
+            &copy; {year} | Built to last. Shipped on time.
           </Text>
         </VStack>
 

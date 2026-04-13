@@ -11,6 +11,7 @@ const ROWS = 18;
 const CELL = 20;
 
 type Cell = 'empty' | 'wall' | 'start' | 'end' | 'visited' | 'path';
+type GridCell = Cell;
 type Algo = 'astar' | 'dijkstra' | 'bfs';
 type Coord = [number, number];
 
@@ -142,8 +143,8 @@ export default function PathfinderGame() {
     setRunning(true);
     const t0 = performance.now();
 
-    const g = grid.map((row) =>
-      row.map((cell) => (cell === 'visited' || cell === 'path' ? 'empty' : cell))
+    const g: Cell[][] = grid.map((row) =>
+      row.map((cell) => (cell === 'visited' || cell === 'path' ? 'empty' as Cell : cell))
     );
 
     const start = DEFAULT_START;

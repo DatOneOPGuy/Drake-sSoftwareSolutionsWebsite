@@ -22,7 +22,7 @@ type Skill = {
 const skills: Skill[] = [
   {
     skill: 'Security Software',
-    summary: 'Endpoint protection, antivirus integration, VPN management, and SIEM monitoring — built professionally at Resistine.',
+    summary: 'Endpoint protection, antivirus integration, VPN management, and SIEM monitoring. Built professionally at Resistine.',
     techStack: {
       'Antivirus': ['ClamAV', 'Rust bindings', 'macOS Endpoint Security Framework'],
       'Monitoring': ['Wazuh SIEM', 'Log collection', 'Threat detection'],
@@ -43,7 +43,6 @@ const skills: Skill[] = [
     summary: 'Native iOS apps built at Resistine with ODOO API integration, network permissions, and WiFi/carrier detection.',
     techStack: {
       iOS: ['Swift', 'SwiftUI', 'UIKit', 'ODOO API'],
-      Android: ['Kotlin', 'Jetpack Compose'],
     },
   },
   {
@@ -88,7 +87,7 @@ export default function SkillTree() {
         <SectionHeading
           label="Capabilities"
           title="A focused stack across product, platform, and security work."
-          description="Breadth only where it helps. Depth where it matters — shipping the right thing in the right place."
+          description="Breadth only where it helps. Depth where it matters. Shipping the right thing in the right place."
           align="center"
         />
       </Box>
@@ -174,7 +173,7 @@ export default function SkillTree() {
                             color="textMuted"
                           >
                             {libs.map((lib: string) => (
-                              <Text key={lib}>— {lib}</Text>
+                              <Text key={lib}>{lib}</Text>
                             ))}
                           </VStack>
                         </Collapse>

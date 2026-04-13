@@ -36,7 +36,7 @@ export default function Hero() {
         <Text className={styles.kicker}>Freelance Software Development</Text>
 
         <h1 className={styles.title}>
-          Precision-built software. Delivered.
+          Built to last. Shipped on time.
         </h1>
 
         <HStack gap={4} flexWrap="wrap" justify="center" mt={5}>
@@ -45,9 +45,9 @@ export default function Hero() {
               Start a project
             </Button>
           </Link>
-          <Link href="#about" _hover={{ textDecoration: 'none' }}>
+          <Link href="#services" _hover={{ textDecoration: 'none' }}>
             <Button variant="outline" borderColor="borderMedium" color="textPrimary" size="lg" rounded="full" px={8} _hover={{ bg: 'whiteAlpha.100', borderColor: 'accentRed' }}>
-              See our work
+              What we build
             </Button>
           </Link>
         </HStack>
