@@ -8,8 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { FaLinkedin } from 'react-icons/fa';
 
-// TODO: replace EMAIL with real contact email before deploying
-const EMAIL = 'hello@drakessoftwaresolutions.com';
+const EMAIL = 'drake@drakesdev.com';
 const LINKEDIN = 'https://linkedin.com/in/drakelesher';
 
 export default function Footer() {

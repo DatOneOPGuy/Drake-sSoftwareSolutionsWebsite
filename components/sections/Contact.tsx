@@ -6,8 +6,7 @@ import { FaLinkedin } from 'react-icons/fa';
 import { FadeIn } from '../motion/FadeIn';
 import SectionHeading from '../ui/SectionHeading';
 
-// TODO: replace EMAIL with real contact email before deploying
-const EMAIL = 'hello@drakessoftwaresolutions.com';
+const EMAIL = 'drake@drakesdev.com';
 const LINKEDIN = 'https://linkedin.com/in/drakelesher';
 
 export default function Contact() {
