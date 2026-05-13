@@ -11,6 +11,7 @@ const WaveInterference = dynamic(() => import('../../components/playground/WaveI
 const FlockingSim = dynamic(() => import('../../components/playground/FlockingSim'), { ssr: false });
 const Cloth = dynamic(() => import('../../components/playground/Cloth'), { ssr: false });
 const Pendulum = dynamic(() => import('../../components/playground/Pendulum'), { ssr: false });
+const PathfinderGame = dynamic(() => import('../../components/sections/PathfinderGame'), { ssr: false });
 
 type DemoSection = {
   title: string;
@@ -76,8 +77,8 @@ export default function PlaygroundPage() {
             Interactive simulations.
           </Heading>
           <Text color="textMuted" fontSize="lg" maxW="2xl" lineHeight="1.7">
-            Six physics and generative art demos, all written from scratch with pure HTML5 Canvas
-            and React. No libraries, no dependencies. Touch, tap, drag, and play.
+            Seven physics, pathfinding, and generative art demos, all written from scratch with
+            pure HTML5 Canvas and React. No libraries, no dependencies. Touch, tap, drag, and play.
           </Text>
         </VStack>
 
@@ -124,6 +125,11 @@ export default function PlaygroundPage() {
               </HStack>
             </VStack>
           ))}
+
+          {/* Pathfinding visualizer — keeps its own SectionHeading and controls */}
+          <Box>
+            <PathfinderGame />
+          </Box>
         </VStack>
 
         {/* Footer note */}

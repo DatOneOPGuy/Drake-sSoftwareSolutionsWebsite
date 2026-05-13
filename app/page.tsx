@@ -8,7 +8,6 @@ import Services from '../components/sections/Services';
 import Process from '../components/sections/Process';
 import CaseStudies from '../components/sections/CaseStudies';
 import CodeTerminal from '../components/sections/CodeTerminal';
-import PathfinderGame from '../components/sections/PathfinderGame';
 import GravitySim from '../components/sections/GravitySim';
 import TechStrip from '../components/sections/TechStrip';
 import SkillTree from '../components/sections/SkillTree';
@@ -45,11 +44,6 @@ export default function HomePage() {
 
         <CodeTerminal />
 
-        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} display={{ base: 'none', md: 'block' }} />
-        <Box display={{ base: 'none', md: 'block' }}>
-          <PathfinderGame />
-        </Box>
-
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <GravitySim />
 
@@ -69,7 +63,7 @@ export default function HomePage() {
             </Button>
           </Link>
           <Text fontSize="xs" color="textFaint" mt={2}>
-            6 more interactive physics &amp; generative art demos
+            7 more interactive physics &amp; generative art demos
           </Text>
         </Box>
 

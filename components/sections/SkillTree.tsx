@@ -96,6 +96,7 @@ export default function SkillTree() {
         gap={5}
         maxW="6xl"
         mx="auto"
+        alignItems="start"
       >
         {skills.map(({ skill, summary, techStack }) => (
           <Box
@@ -109,12 +110,13 @@ export default function SkillTree() {
             transition="all 0.2s ease"
             boxShadow="0 12px 30px rgba(0, 0, 0, 0.18)"
           >
-            <Box h="2px" w="2.5rem" mb={3} bgGradient="linear(to-r, accentRed, accentFlame)" />
+            <Box h="2px" w="2.5rem" mb={3} mx="auto" bgGradient="linear(to-r, accentRed, accentFlame)" />
             <Button
               variant="ghost"
               onClick={() => toggleSkill(skill)}
               width="100%"
-              justifyContent="space-between"
+              position="relative"
+              justifyContent="center"
               fontWeight="bold"
               fontSize="lg"
               color="textPrimary"
@@ -122,10 +124,11 @@ export default function SkillTree() {
               alignItems="center"
               _hover={{ color: 'accentRed' }}
             >
-              <span style={{ flex: 1, textAlign: 'left' }}>{skill}</span>
+              <span style={{ textAlign: 'center' }}>{skill}</span>
               <Icon
                 as={openSkills.has(skill) ? ChevronDownIcon : ChevronRightIcon}
-                ml={2}
+                position="absolute"
+                right={3}
                 boxSize={4}
               />
             </Button>
