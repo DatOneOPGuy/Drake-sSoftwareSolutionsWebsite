@@ -7,7 +7,6 @@ const TECH = [
   'Python',
   'TypeScript',
   'Swift',
-  'Rust',
   'C#',
   'React',
   'Next.js',

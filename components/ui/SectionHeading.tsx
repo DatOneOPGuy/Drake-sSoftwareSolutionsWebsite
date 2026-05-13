@@ -28,7 +28,7 @@ export default function SectionHeading({
       >
         {label}
       </Text>
-      <Heading as="h2" fontSize={{ base: '2xl', md: '3xl' }} lineHeight="1.05" color="textPrimary" textAlign={align}>
+      <Heading as="h2" fontSize={{ base: '2xl', md: '3xl' }} lineHeight="1.05" color="textPrimary" textAlign={align} minH="1.2em">
         <ScrambleText text={title} speed={25} />
       </Heading>
       {description && (

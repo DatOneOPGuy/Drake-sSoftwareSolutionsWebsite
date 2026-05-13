@@ -109,11 +109,26 @@ export default function Metaballs() {
       };
     };
 
+    const onTouch = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (!touch) return;
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current = {
+        x: (touch.clientX - rect.left) * (W / rect.width),
+        y: (touch.clientY - rect.top) * (H / rect.height),
+      };
+    };
+
     canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('touchmove', onTouch, { passive: false });
+    canvas.addEventListener('touchstart', onTouch, { passive: false });
     rafRef.current = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener('mousemove', onMove);
+      canvas.removeEventListener('touchmove', onTouch);
+      canvas.removeEventListener('touchstart', onTouch);
     };
   }, []);
 
@@ -122,7 +137,7 @@ export default function Metaballs() {
       <Box borderRadius="xl" border="1px solid" borderColor="borderSoft" overflow="hidden" cursor="crosshair">
         <canvas ref={canvasRef} width={W} height={H} style={{ display: 'block', width: '100%', maxWidth: W, height: 'auto' }} />
       </Box>
-      <Text fontSize="xs" color="textFaint">Metaballs: implicit surface rendering via scalar field evaluation · Mouse attracts the blobs</Text>
+      <Text fontSize="xs" color="textFaint">Metaballs: implicit surface rendering via scalar field evaluation · Touch or hover to attract</Text>
     </VStack>
   );
 }

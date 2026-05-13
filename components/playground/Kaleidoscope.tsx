@@ -155,12 +155,29 @@ export default function Kaleidoscope() {
 
     ctx.fillStyle = '#070708';
     ctx.fillRect(0, 0, W, H);
+    const onTouch = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (!touch) return;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = W / rect.width;
+      const scaleY = H / rect.height;
+      mouseRef.current = {
+        x: (touch.clientX - rect.left) * scaleX,
+        y: (touch.clientY - rect.top) * scaleY,
+      };
+    };
+
     canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('touchmove', onTouch, { passive: false });
+    canvas.addEventListener('touchstart', onTouch, { passive: false });
     rafRef.current = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener('mousemove', onMove);
+      canvas.removeEventListener('touchmove', onTouch);
+      canvas.removeEventListener('touchstart', onTouch);
     };
   }, []);
 
@@ -169,7 +186,7 @@ export default function Kaleidoscope() {
       <Box borderRadius="xl" border="1px solid" borderColor="borderSoft" overflow="hidden" cursor="crosshair">
         <canvas ref={canvasRef} width={W} height={H} style={{ display: 'block', width: '100%', maxWidth: W, height: 'auto' }} />
       </Box>
-      <Text fontSize="xs" color="textFaint">Move your mouse to shape the kaleidoscope · 12-fold rotational symmetry with particle trails</Text>
+      <Text fontSize="xs" color="textFaint">Move or touch to shape the kaleidoscope · 12-fold rotational symmetry with particle trails</Text>
     </VStack>
   );
 }

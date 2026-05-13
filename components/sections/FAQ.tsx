@@ -70,12 +70,15 @@ export default function FAQ() {
                   fontWeight="600"
                   color="textPrimary"
                   textAlign="left"
+                  whiteSpace="normal"
+                  height="auto"
+                  minH="auto"
                   _hover={{ bg: 'blackAlpha.50' }}
                 >
-                  <Text as="span" flex={1} textAlign="left">
+                  <Text as="span" flex={1} textAlign="left" wordBreak="break-word">
                     {q}
                   </Text>
-                  <Icon as={isOpen ? ChevronDownIcon : ChevronRightIcon} boxSize={5} color="accentRed" />
+                  <Icon as={isOpen ? ChevronDownIcon : ChevronRightIcon} boxSize={5} color="accentRed" flexShrink={0} ml={2} />
                 </Button>
                 <Collapse in={isOpen} animateOpacity>
                   <Box px={5} pb={5}>

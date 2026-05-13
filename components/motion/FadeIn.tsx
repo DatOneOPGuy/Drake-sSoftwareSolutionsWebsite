@@ -10,7 +10,7 @@ export function FadeIn({ children }: PropsWithChildren<{}>) {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       {children}
     </motion.div>

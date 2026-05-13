@@ -24,7 +24,7 @@ const skills: Skill[] = [
     skill: 'Security Software',
     summary: 'Endpoint protection, antivirus integration, VPN management, and SIEM monitoring. Built professionally at Resistine.',
     techStack: {
-      'Antivirus': ['ClamAV', 'Rust bindings', 'macOS Endpoint Security Framework'],
+      'Antivirus': ['ClamAV', 'macOS Endpoint Security Framework'],
       'Monitoring': ['Wazuh SIEM', 'Log collection', 'Threat detection'],
       'Networking': ['VPN (macOS/Linux/Windows)', 'TCP/IP', 'DNS', 'TLS'],
     },
@@ -58,7 +58,7 @@ const skills: Skill[] = [
     skill: 'Desktop & Games',
     summary: 'Cross-platform desktop apps with plugin architectures and original games built in Godot.',
     techStack: {
-      Desktop: ['Python (Briefcase)', 'C# / .NET 8', 'Rust'],
+      Desktop: ['Python (Briefcase)', 'C# / .NET 8'],
       Games: ['Godot', 'GDScript', 'Phantom Camera'],
       'CLI Tools': ['Typer', 'Rich', 'Click'],
     },

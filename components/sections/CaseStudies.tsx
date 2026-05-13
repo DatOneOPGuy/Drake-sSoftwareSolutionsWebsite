@@ -14,13 +14,25 @@ type CaseStudy = {
 
 const CASE_STUDIES: CaseStudy[] = [
   {
+    title: 'Grant Research Automation',
+    tag: 'Data Pipeline · Nonprofit',
+    problem: 'A custom data pipeline that analyzed over 10,000 foundation matches for a nonprofit client by pulling and parsing IRS 990-PF tax filings from 2023 and 2024, scoring each foundation on mission alignment and grant opportunity.',
+    stack: ['Python', 'pandas', 'SQLite', 'lxml', 'Fuzzy Matching'],
+    outcomes: [
+      'Parsed 2 years of IRS 990-PF filings to extract giving history for 10,000+ foundations',
+      '6-pass fuzzy matching algorithm achieving 98.9% match rate across inconsistent naming',
+      'Dual scoring system (Alignment + Opportunity) on a 1-100 scale for prioritized funding prospects',
+      'Replaced weeks of manual foundation research with a pipeline that runs in minutes',
+    ],
+  },
+  {
     title: 'Resistine Security Platform',
     tag: 'Security · Cross-Platform',
-    problem: 'A multi-platform endpoint security suite with a Python desktop app (macOS/Linux/Windows), native iOS client, Rust-based ClamAV antivirus integration, VPN management, and centralized SIEM monitoring via Wazuh.',
-    stack: ['Python', 'Swift', 'Rust', 'FastAPI', 'ClamAV', 'Wazuh', 'Briefcase'],
+    problem: 'A multi-platform endpoint security suite with a Python desktop app (macOS/Linux/Windows), native iOS client, ClamAV antivirus integration, VPN management, and centralized SIEM monitoring via Wazuh.',
+    stack: ['Python', 'Swift', 'FastAPI', 'ClamAV', 'Wazuh', 'Briefcase'],
     outcomes: [
       'Cross-platform desktop app with plugin architecture (chat, VPN, dashboard, endpoint mgmt)',
-      'Rust-wrapped ClamAV engine with macOS Endpoint Security Framework integration',
+      'ClamAV engine with macOS Endpoint Security Framework integration',
       'Native Swift iOS client with ODOO API, network permissions, and WiFi/carrier detection',
       'Wazuh SIEM server for centralized threat monitoring and iPhone log collection',
     ],
@@ -59,17 +71,6 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
   },
   {
-    title: 'Personal Finance Tracker',
-    tag: 'Desktop · .NET',
-    problem: 'A feature-rich console and web application suite for personal finance management. A .NET 8 console app and a companion ASP.NET Razor Pages web app with budget tracking, trend analysis, and smart insights.',
-    stack: ['C#', '.NET 8/9', 'ASP.NET', 'Razor Pages', 'SQLite'],
-    outcomes: [
-      'Transaction CRUD with search, categorization, and budget alerts',
-      'Visual budget tracking with progress bars and monthly trend reports',
-      'Web companion app with dedicated controllers for budgets and transactions',
-    ],
-  },
-  {
     title: 'UFC Analytics Dashboard',
     tag: 'Web Development',
     problem: 'A Next.js analytics dashboard for exploring UFC fighter statistics, bout history, and performance metrics with server-side rendering and responsive data visualizations.',
@@ -84,7 +85,7 @@ const CASE_STUDIES: CaseStudy[] = [
 
 export default function CaseStudies() {
   return (
-    <Container as="section" id="work" py={0} maxW="7xl">
+    <Container as="section" id="work" py={0} maxW="7xl" overflow="hidden">
       <FadeIn>
         <SectionHeading
           label="Selected work"

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>{}[]';
+// Only use characters that are similar width to lowercase letters to prevent layout shifts
+const CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
 type ScrambleTextProps = {
   text: string;
@@ -26,7 +27,7 @@ export default function ScrambleText({ text, className, speed = 30 }: ScrambleTe
           scramble();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     observer.observe(el);
@@ -37,6 +38,8 @@ export default function ScrambleText({ text, className, speed = 30 }: ScrambleTe
   const scramble = () => {
     let iteration = 0;
     const maxIterations = text.length;
+    // Speed up for longer text so it doesn't take forever on mobile
+    const resolveRate = maxIterations > 30 ? 1 : 1 / 3;
 
     const interval = setInterval(() => {
       setDisplayed(
@@ -50,7 +53,7 @@ export default function ScrambleText({ text, className, speed = 30 }: ScrambleTe
           .join('')
       );
 
-      iteration += 1 / 3; // resolve ~3 scramble frames per character
+      iteration += resolveRate;
 
       if (iteration >= maxIterations) {
         setDisplayed(text);
@@ -60,7 +63,7 @@ export default function ScrambleText({ text, className, speed = 30 }: ScrambleTe
   };
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={className} style={{ display: 'inline-block', minWidth: '100%' }}>
       {displayed}
     </span>
   );

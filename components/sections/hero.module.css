@@ -24,14 +24,15 @@
 /* --- Hero logo — responsive via media queries for Safari compat --- */
 .heroLogo {
   display: block;
-  width: 88vw;
-  max-width: 1100px;
+  width: 130vw;
+  max-width: none;
   height: auto;
 }
 
 @media (min-width: 48rem) {
   .heroLogo {
     width: 72vw;
+    max-width: 1100px;
   }
 }
 

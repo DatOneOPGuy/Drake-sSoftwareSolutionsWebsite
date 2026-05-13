@@ -11,7 +11,7 @@ export default function About() {
           <Text fontSize="lg" color="textMuted" lineHeight="1.8">
             I&apos;m Drake Lesher, a software engineer and Computer Science graduate of Wofford College
             currently building cross-platform security software at Resistine, where I work across
-            Python desktop apps, native iOS (Swift), Rust-based antivirus integration, VPN systems,
+            Python desktop apps, native iOS (Swift), antivirus integration, VPN systems,
             and SIEM monitoring. I partner with founders, small teams, and non-technical clients
             from first sketch all the way through shipping and support.
           </Text>
@@ -22,7 +22,7 @@ export default function About() {
               <Text color="textMuted" fontSize="md">Full-stack web: React, Next.js, FastAPI, TypeScript, Docker, WebSockets</Text>
               <Text color="textMuted" fontSize="md">Native mobile: Swift/SwiftUI (iOS)</Text>
               <Text color="textMuted" fontSize="md">Data &amp; AI: Monte Carlo simulations, xG models, LLM integrations, NumPy pipelines</Text>
-              <Text color="textMuted" fontSize="md">Desktop &amp; games: Python (Briefcase), C#/.NET, Rust, Godot (GDScript)</Text>
+              <Text color="textMuted" fontSize="md">Desktop &amp; games: Python (Briefcase), C#/.NET, Godot (GDScript)</Text>
             </VStack>
           </Box>
         </VStack>

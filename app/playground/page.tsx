@@ -77,7 +77,7 @@ export default function PlaygroundPage() {
           </Heading>
           <Text color="textMuted" fontSize="lg" maxW="2xl" lineHeight="1.7">
             Six physics and generative art demos, all written from scratch with pure HTML5 Canvas
-            and React. No libraries, no dependencies. Move your mouse, click, and play.
+            and React. No libraries, no dependencies. Touch, tap, drag, and play.
           </Text>
         </VStack>
 

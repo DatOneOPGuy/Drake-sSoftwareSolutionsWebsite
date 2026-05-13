@@ -75,41 +75,6 @@ const SNIPPETS: Snippet[] = [
         se=np.std(results) / np.sqrt(n_trials),
     )`,
   },
-  {
-    label: 'clamav/scanner.rs',
-    lang: 'rust',
-    code: `pub struct Scanner {
-    engine: *mut cl_engine,
-    db_path: PathBuf,
-}
-
-impl Scanner {
-    pub fn scan_file(&self, path: &Path) -> ScanResult {
-        let c_path = CString::new(
-            path.to_str().expect("valid UTF-8")
-        ).unwrap();
-
-        let mut virname: *const c_char = ptr::null();
-        let ret = unsafe {
-            cl_scanfile(
-                c_path.as_ptr(),
-                &mut virname,
-                ptr::null_mut(),
-                self.engine,
-                &self.options,
-            )
-        };
-
-        match ret {
-            CL_CLEAN => ScanResult::Clean,
-            CL_VIRUS => ScanResult::Threat(
-                unsafe { CStr::from_ptr(virname) }.to_string()
-            ),
-            _ => ScanResult::Error(ret),
-        }
-    }
-}`,
-  },
 ];
 
 // Simple syntax highlighting via regex
@@ -128,8 +93,7 @@ function highlight(code: string, lang: string): string {
   // Keywords
   const kwPy = /\b(class|def|async|await|return|import|from|if|else|for|in|self|None|True|False|match|case)\b/g;
   const kwTs = /\b(export|class|const|let|new|async|await|return|import|from|function|get|private|this|type|void)\b/g;
-  const kwRs = /\b(pub|struct|impl|fn|let|mut|unsafe|match|self|use|mod|crate|where|trait|enum)\b/g;
-  const kw = lang === 'rust' ? kwRs : lang === 'typescript' ? kwTs : kwPy;
+  const kw = lang === 'typescript' ? kwTs : kwPy;
   html = html.replace(kw, '<span style="color:#f87171">$1</span>');
   // Types/classes
   html = html.replace(/\b([A-Z][A-Za-z0-9_]+)\b/g, '<span style="color:#fbbf24">$1</span>');
@@ -223,11 +187,12 @@ export default function CodeTerminal() {
           <Box
             px={5}
             py={4}
-            minH="320px"
+            h={{ base: '360px', md: '320px' }}
             fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
             fontSize={{ base: '11px', md: '13px' }}
             lineHeight="1.7"
             overflowX="auto"
+            overflowY="hidden"
           >
             <pre style={{ margin: 0 }}>
               <code

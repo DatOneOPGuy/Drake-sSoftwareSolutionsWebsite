@@ -1,16 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Box, Flex, Link, IconButton, Icon, HStack, Text } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { ArrowUpIcon } from '@heroicons/react/24/outline';
+import { Box, Flex, Link, IconButton, Icon, HStack, Text, VStack } from '@chakra-ui/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const MotionHeader = motion.create(Box);
+const MotionBox = motion.create(Box);
 
 const NAV_SECTIONS = ['about', 'services', 'process', 'work', 'faq', 'contact'] as const;
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -22,6 +24,8 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <MotionHeader
@@ -71,20 +75,71 @@ export default function Navbar() {
             Drake&apos;s Software Solutions
           </Text>
         </Link>
-        <HStack as="nav" gap={5} fontSize="xs" fontWeight="600" letterSpacing="0.16em" textTransform="uppercase">
+
+        {/* Desktop nav */}
+        <HStack as="nav" gap={5} fontSize="xs" fontWeight="600" letterSpacing="0.16em" textTransform="uppercase" display={{ base: 'none', md: 'flex' }}>
           {NAV_SECTIONS.map((id) => (
             <Link
               key={id}
               href={`#${id}`}
               color="textMuted"
               _hover={{ color: 'accentRed' }}
-              display={{ base: id === 'contact' ? 'inline' : 'none', md: 'inline' }}
             >
               {id[0].toUpperCase() + id.slice(1)}
             </Link>
           ))}
         </HStack>
+
+        {/* Mobile hamburger */}
+        <IconButton
+          display={{ base: 'flex', md: 'none' }}
+          aria-label="Toggle menu"
+          variant="ghost"
+          color="textPrimary"
+          onClick={() => setMenuOpen(!menuOpen)}
+          size="sm"
+        >
+          <Icon as={menuOpen ? XMarkIcon : Bars3Icon} boxSize={6} />
+        </IconButton>
       </Flex>
+
+      {/* Mobile dropdown */}
+      <AnimatePresence>
+        {menuOpen && (
+          <MotionBox
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            overflow="hidden"
+            bg="bgNav"
+            borderTop="1px solid"
+            borderColor="borderSoft"
+            display={{ base: 'block', md: 'none' }}
+          >
+            <VStack as="nav" gap={0} py={2}>
+              {NAV_SECTIONS.map((id) => (
+                <Link
+                  key={id}
+                  href={`#${id}`}
+                  onClick={closeMenu}
+                  width="100%"
+                  px={6}
+                  py={3}
+                  fontSize="sm"
+                  fontWeight="600"
+                  letterSpacing="0.16em"
+                  textTransform="uppercase"
+                  color="textMuted"
+                  _hover={{ color: 'accentRed', bg: 'rgba(220, 38, 38, 0.06)' }}
+                >
+                  {id[0].toUpperCase() + id.slice(1)}
+                </Link>
+              ))}
+            </VStack>
+          </MotionBox>
+        )}
+      </AnimatePresence>
 
       {hidden && (
         <IconButton

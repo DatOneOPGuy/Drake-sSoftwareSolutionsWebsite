@@ -102,14 +102,38 @@ export default function WaveInterference() {
       }
     };
 
+    const onTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (!touch) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) * (W / rect.width);
+      const y = (touch.clientY - rect.top) * (H / rect.height);
+      sourcesRef.current.push({ x, y });
+      if (sourcesRef.current.length > 6) sourcesRef.current.shift();
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (!touch || sourcesRef.current.length === 0) return;
+      const rect = canvas.getBoundingClientRect();
+      const last = sourcesRef.current[sourcesRef.current.length - 1];
+      last.x = (touch.clientX - rect.left) * (W / rect.width);
+      last.y = (touch.clientY - rect.top) * (H / rect.height);
+    };
+
     canvas.addEventListener('click', onClick);
     canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
     rafRef.current = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener('click', onClick);
       canvas.removeEventListener('mousemove', onMove);
+      canvas.removeEventListener('touchstart', onTouchStart);
+      canvas.removeEventListener('touchmove', onTouchMove);
     };
   }, []);
 
@@ -118,7 +142,7 @@ export default function WaveInterference() {
       <Box borderRadius="xl" border="1px solid" borderColor="borderSoft" overflow="hidden" cursor="crosshair">
         <canvas ref={canvasRef} width={W} height={H} style={{ display: 'block', width: '100%', maxWidth: W, height: 'auto' }} />
       </Box>
-      <Text fontSize="xs" color="textFaint">Wave interference pattern · Move the last source with your mouse · Click to add new sources (max 6)</Text>
+      <Text fontSize="xs" color="textFaint">Wave interference pattern · Tap or click to add sources (max 6) · Drag to move the last one</Text>
     </VStack>
   );
 }

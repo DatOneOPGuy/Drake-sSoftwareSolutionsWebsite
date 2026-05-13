@@ -126,11 +126,18 @@ export default function Pendulum() {
         p.amplitude = Math.PI * 0.8;
       }
     };
+    const onTap = (e: TouchEvent) => {
+      e.preventDefault();
+      onClick();
+    };
+
     canvas.addEventListener('click', onClick);
+    canvas.addEventListener('touchstart', onTap, { passive: false });
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener('click', onClick);
+      canvas.removeEventListener('touchstart', onTap);
     };
   }, [trailMode]);
 

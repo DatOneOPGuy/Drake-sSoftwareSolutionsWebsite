@@ -135,16 +135,34 @@ export default function FlockingSim() {
     };
     const onLeave = () => { mouseRef.current = { x: -1000, y: -1000 }; };
 
+    const onTouch = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (!touch) return;
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current = {
+        x: (touch.clientX - rect.left) * (W / rect.width),
+        y: (touch.clientY - rect.top) * (H / rect.height),
+      };
+    };
+    const onTouchEnd = () => { mouseRef.current = { x: -1000, y: -1000 }; };
+
     ctx.fillStyle = '#070708';
     ctx.fillRect(0, 0, W, H);
     canvas.addEventListener('mousemove', onMove);
     canvas.addEventListener('mouseleave', onLeave);
+    canvas.addEventListener('touchmove', onTouch, { passive: false });
+    canvas.addEventListener('touchstart', onTouch, { passive: false });
+    canvas.addEventListener('touchend', onTouchEnd);
     rafRef.current = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener('mousemove', onMove);
       canvas.removeEventListener('mouseleave', onLeave);
+      canvas.removeEventListener('touchmove', onTouch);
+      canvas.removeEventListener('touchstart', onTouch);
+      canvas.removeEventListener('touchend', onTouchEnd);
     };
   }, []);
 
@@ -153,7 +171,7 @@ export default function FlockingSim() {
       <Box borderRadius="xl" border="1px solid" borderColor="borderSoft" overflow="hidden" cursor="none">
         <canvas ref={canvasRef} width={W} height={H} style={{ display: 'block', width: '100%', maxWidth: W, height: 'auto' }} />
       </Box>
-      <Text fontSize="xs" color="textFaint">Boids flocking algorithm (Craig Reynolds, 1986) · Separation + Alignment + Cohesion · Mouse repels the flock</Text>
+      <Text fontSize="xs" color="textFaint">Boids flocking algorithm (Craig Reynolds, 1986) · Separation + Alignment + Cohesion · Touch or hover to repel</Text>
     </VStack>
   );
 }

@@ -7,6 +7,7 @@ import {
   CpuChipIcon,
   ShieldCheckIcon,
   GlobeAltIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/outline';
 import { FadeIn } from '../motion/FadeIn';
 import SectionHeading from '../ui/SectionHeading';
@@ -44,6 +45,12 @@ const SERVICES: Service[] = [
     highlights: ['Security reviews & audits', 'Auth & secrets hardening', 'Threat modeling'],
   },
   {
+    icon: ChartBarIcon,
+    title: 'Data Pipelines & Research Automation',
+    description: 'Custom data pipelines that pull, parse, match, and score large datasets so you can make decisions in minutes instead of weeks.',
+    highlights: ['Public records & API ingestion', 'Fuzzy matching & deduplication', 'Scoring models & ranked outputs'],
+  },
+  {
     icon: GlobeAltIcon,
     title: 'Web Development',
     description: 'Marketing sites, web apps, and dashboards with a focus on performance, accessibility, and polish.',
@@ -58,7 +65,7 @@ export default function Services() {
         <SectionHeading
           label="Services"
           title="What we build."
-          description="Five focused practices, all delivered by the same person who wrote the proposal — no handoffs, no hidden subcontractors."
+          description="Six focused practices, all delivered by the same person who wrote the proposal. No handoffs, no hidden subcontractors."
         />
         <Grid
           templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}

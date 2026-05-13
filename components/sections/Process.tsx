@@ -13,7 +13,7 @@ const STEPS = [
   {
     num: '02',
     title: 'Design',
-    description: 'Technical proposal, architecture sketch, and a realistic plan you can show to stakeholders.',
+    description: 'Technical proposal, architecture sketch, and a clear document outlining scope, timeline, and deliverables.',
   },
   {
     num: '03',

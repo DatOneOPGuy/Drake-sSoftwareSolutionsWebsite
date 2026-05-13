@@ -307,7 +307,7 @@ export default function PathfinderGame() {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
-            style={{ display: 'block', margin: '0 auto' }}
+            style={{ display: 'block', margin: '0 auto', width: '100%', maxWidth: COLS * CELL, height: 'auto' }}
           />
         </Box>
 

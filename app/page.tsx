@@ -5,7 +5,6 @@ import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Stats from '../components/sections/Stats';
 import Services from '../components/sections/Services';
-import AiDemo from '../components/sections/AiDemo';
 import Process from '../components/sections/Process';
 import CaseStudies from '../components/sections/CaseStudies';
 import CodeTerminal from '../components/sections/CodeTerminal';
@@ -39,9 +38,6 @@ export default function HomePage() {
         <Services />
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
-        <AiDemo />
-
-        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <Process />
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
@@ -49,8 +45,10 @@ export default function HomePage() {
 
         <CodeTerminal />
 
-        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
-        <PathfinderGame />
+        <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} display={{ base: 'none', md: 'block' }} />
+        <Box display={{ base: 'none', md: 'block' }}>
+          <PathfinderGame />
+        </Box>
 
         <Box borderTop="1px solid" borderColor={siteTheme.colors.borderSoft} opacity={0.8} />
         <GravitySim />

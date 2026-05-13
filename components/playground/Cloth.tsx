@@ -187,10 +187,28 @@ export default function Cloth() {
     const onDown = () => { mouseRef.current.down = true; };
     const onUp = () => { mouseRef.current.down = false; };
 
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (!touch) return;
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current.x = (touch.clientX - rect.left) * (W / rect.width);
+      mouseRef.current.y = (touch.clientY - rect.top) * (H / rect.height);
+    };
+    const onTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      mouseRef.current.down = true;
+      onTouchMove(e);
+    };
+    const onTouchEnd = () => { mouseRef.current.down = false; };
+
     canvas.addEventListener('mousemove', onMove);
     canvas.addEventListener('mousedown', onDown);
     canvas.addEventListener('mouseup', onUp);
     canvas.addEventListener('mouseleave', onUp);
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+    canvas.addEventListener('touchend', onTouchEnd);
     rafRef.current = requestAnimationFrame(draw);
 
     return () => {
@@ -199,6 +217,9 @@ export default function Cloth() {
       canvas.removeEventListener('mousedown', onDown);
       canvas.removeEventListener('mouseup', onUp);
       canvas.removeEventListener('mouseleave', onUp);
+      canvas.removeEventListener('touchmove', onTouchMove);
+      canvas.removeEventListener('touchstart', onTouchStart);
+      canvas.removeEventListener('touchend', onTouchEnd);
     };
   }, []);
 
@@ -207,7 +228,7 @@ export default function Cloth() {
       <Box borderRadius="xl" border="1px solid" borderColor="borderSoft" overflow="hidden" cursor="grab">
         <canvas ref={canvasRef} width={W} height={H} style={{ display: 'block', width: '100%', maxWidth: W, height: 'auto' }} />
       </Box>
-      <Text fontSize="xs" color="textFaint">Verlet integration cloth simulation · Hover to push, click-drag to grab · Pinned at top, gravity pulls down</Text>
+      <Text fontSize="xs" color="textFaint">Verlet integration cloth simulation · Touch or drag to interact · Pinned at top, gravity pulls down</Text>
     </VStack>
   );
 }
