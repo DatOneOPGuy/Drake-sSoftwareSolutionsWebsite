@@ -17,6 +17,16 @@ type Body = {
   hue: number;
 };
 
+type Particle = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  maxLife: number;
+  hue: number;
+};
+
 const G = 0.8;
 const TRAIL_LEN = 120;
 const DAMPING = 0.9998;
@@ -40,7 +50,7 @@ function randomBody(cx: number, cy: number): Body {
     mass,
     r: Math.sqrt(mass) * 2,
     trail: [],
-    hue: Math.random() * 40 - 10, // red-ish range: -10 to 30
+    hue: Math.random() * 360,
   };
 }
 
@@ -58,11 +68,55 @@ function createPreset(): Body[] {
 export default function GravitySim() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const bodiesRef = useRef<Body[]>(createPreset());
+  const particlesRef = useRef<Particle[]>([]);
   const runningRef = useRef(true);
   const rafRef = useRef<number>(0);
+  const mouseDownRef = useRef(false);
+  const mousePosRef = useRef<{ x: number; y: number } | null>(null);
+  const spawnIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [paused, setPaused] = useState(false);
   const [bodyCount, setBodyCount] = useState(8);
   const [energy, setEnergy] = useState(0);
+
+  const spawnParticles = (x: number, y: number, hue: number, count: number, speed: number) => {
+    for (let i = 0; i < count; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const s = speed * (0.3 + Math.random() * 1.2);
+      const life = 30 + Math.random() * 40;
+      particlesRef.current.push({
+        x, y,
+        vx: Math.cos(a) * s,
+        vy: Math.sin(a) * s,
+        life,
+        maxLife: life,
+        hue: hue + (Math.random() * 60 - 30),
+      });
+    }
+  };
+
+  const spawnBodyAt = (x: number, y: number) => {
+    const bodies = bodiesRef.current;
+    const mass = 3 + Math.random() * 6;
+    const sun = bodies[0];
+    let vx = 0, vy = 0;
+    if (sun) {
+      const dx = x - sun.x;
+      const dy = y - sun.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const speed = Math.sqrt((G * sun.mass) / dist) * 0.9;
+      vx = (-dy / dist) * speed;
+      vy = (dx / dist) * speed;
+    }
+    const hue = Math.random() * 360;
+    bodies.push({
+      x, y, vx, vy, mass,
+      r: Math.sqrt(mass) * 2,
+      trail: [],
+      hue,
+    });
+    spawnParticles(x, y, hue, 8, 2);
+    setBodyCount(bodies.length);
+  };
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -70,7 +124,7 @@ export default function GravitySim() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const bodies = bodiesRef.current;
+    let bodies = bodiesRef.current;
 
     if (runningRef.current) {
       // Physics step
@@ -92,6 +146,41 @@ export default function GravitySim() {
           b.vx -= fx / b.mass;
           b.vy -= fy / b.mass;
         }
+      }
+
+      // Collisions: merge smaller into larger (conserve momentum), explode
+      const removed = new Set<number>();
+      for (let i = 0; i < bodies.length; i++) {
+        if (removed.has(i)) continue;
+        for (let j = i + 1; j < bodies.length; j++) {
+          if (removed.has(j)) continue;
+          const a = bodies[i];
+          const b = bodies[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < a.r + b.r) {
+            const big = a.mass >= b.mass ? a : b;
+            const small = a.mass >= b.mass ? b : a;
+            const smallIdx = a.mass >= b.mass ? j : i;
+            const newMass = big.mass + small.mass;
+            big.vx = (big.vx * big.mass + small.vx * small.mass) / newMass;
+            big.vy = (big.vy * big.mass + small.vy * small.mass) / newMass;
+            big.x = (big.x * big.mass + small.x * small.mass) / newMass;
+            big.y = (big.y * big.mass + small.y * small.mass) / newMass;
+            big.mass = newMass;
+            big.r = Math.sqrt(newMass) * 2;
+            const relSpeed = Math.sqrt((a.vx - b.vx) ** 2 + (a.vy - b.vy) ** 2);
+            spawnParticles(small.x, small.y, small.hue, 20, 1 + relSpeed * 0.5);
+            removed.add(smallIdx);
+            if (smallIdx === i) break;
+          }
+        }
+      }
+      if (removed.size > 0) {
+        bodiesRef.current = bodies.filter((_, idx) => !removed.has(idx));
+        bodies = bodiesRef.current;
+        setBodyCount(bodies.length);
       }
 
       let totalKE = 0;
@@ -170,6 +259,28 @@ export default function GravitySim() {
       ctx.stroke();
     }
 
+    // Particles update + render
+    const particles = particlesRef.current;
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      if (runningRef.current) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+        p.life -= 1;
+      }
+      if (p.life <= 0) {
+        particles.splice(i, 1);
+        continue;
+      }
+      const alpha = p.life / p.maxLife;
+      ctx.fillStyle = `hsla(${p.hue}, 90%, 65%, ${alpha})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.5 * alpha + 0.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
     rafRef.current = requestAnimationFrame(draw);
   }, []);
 
@@ -208,40 +319,65 @@ export default function GravitySim() {
       }
     }
     bodiesRef.current = createPreset();
+    particlesRef.current = [];
     setBodyCount(bodiesRef.current.length);
     runningRef.current = true;
     setPaused(false);
   };
 
-  // Click to spawn a body at cursor
-  const handleClick = (e: React.MouseEvent) => {
+  const eventToCanvas = (e: React.MouseEvent | React.TouchEvent): { x: number; y: number } | null => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
     const scaleX = WIDTH / rect.width;
     const scaleY = HEIGHT / rect.height;
-    const x = (e.clientX - rect.left) * scaleX;
-    const y = (e.clientY - rect.top) * scaleY;
-
-    const mass = 3 + Math.random() * 6;
-    const sun = bodiesRef.current[0];
-    // Give orbital velocity relative to center mass
-    const dx = x - sun.x;
-    const dy = y - sun.y;
-    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-    const speed = Math.sqrt((G * sun.mass) / dist) * 0.9;
-
-    bodiesRef.current.push({
-      x, y,
-      vx: (-dy / dist) * speed,
-      vy: (dx / dist) * speed,
-      mass,
-      r: Math.sqrt(mass) * 2,
-      trail: [],
-      hue: Math.random() * 40 - 10,
-    });
-    setBodyCount(bodiesRef.current.length);
+    const point = 'touches' in e ? e.touches[0] : (e as React.MouseEvent);
+    if (!point) return null;
+    return {
+      x: (point.clientX - rect.left) * scaleX,
+      y: (point.clientY - rect.top) * scaleY,
+    };
   };
+
+  const stopSpawning = () => {
+    mouseDownRef.current = false;
+    if (spawnIntervalRef.current !== null) {
+      clearInterval(spawnIntervalRef.current);
+      spawnIntervalRef.current = null;
+    }
+  };
+
+  const startSpawning = (e: React.MouseEvent | React.TouchEvent) => {
+    const pos = eventToCanvas(e);
+    if (!pos) return;
+    mouseDownRef.current = true;
+    mousePosRef.current = pos;
+    spawnBodyAt(pos.x, pos.y);
+    if (spawnIntervalRef.current !== null) clearInterval(spawnIntervalRef.current);
+    spawnIntervalRef.current = setInterval(() => {
+      if (!mouseDownRef.current || !mousePosRef.current) return;
+      spawnBodyAt(mousePosRef.current.x, mousePosRef.current.y);
+    }, 70);
+  };
+
+  const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!mouseDownRef.current) return;
+    const pos = eventToCanvas(e);
+    if (pos) mousePosRef.current = pos;
+  };
+
+  useEffect(() => {
+    const up = () => stopSpawning();
+    window.addEventListener('mouseup', up);
+    window.addEventListener('touchend', up);
+    window.addEventListener('blur', up);
+    return () => {
+      window.removeEventListener('mouseup', up);
+      window.removeEventListener('touchend', up);
+      window.removeEventListener('blur', up);
+      if (spawnIntervalRef.current !== null) clearInterval(spawnIntervalRef.current);
+    };
+  }, []);
 
   return (
     <Container as="section" py={0} maxW="5xl">
@@ -249,7 +385,7 @@ export default function GravitySim() {
         <SectionHeading
           label="Physics sandbox"
           title="N-body gravity simulation."
-          description="An orbital mechanics simulation with real Newtonian gravity. Click anywhere to spawn new bodies. Watch orbits form, decay, and collide."
+          description="An orbital mechanics simulation with real Newtonian gravity. Click or hold to spawn bodies into orbit. Watch them collide and merge."
         />
 
         <HStack gap={3} mb={4} flexWrap="wrap">
@@ -318,13 +454,17 @@ export default function GravitySim() {
             ref={canvasRef}
             width={WIDTH}
             height={HEIGHT}
-            onClick={handleClick}
-            style={{ display: 'block', width: '100%', height: 'auto' }}
+            onMouseDown={startSpawning}
+            onMouseMove={handleMove}
+            onMouseLeave={stopSpawning}
+            onTouchStart={startSpawning}
+            onTouchMove={handleMove}
+            style={{ display: 'block', width: '100%', height: 'auto', touchAction: 'none' }}
           />
         </Box>
 
         <Text fontSize="xs" color="textFaint" mt={3} textAlign="center">
-          Click anywhere to launch a new body into orbit · Newtonian gravity: F = G·m₁·m₂/r²
+          Click or hold to spawn bodies · Collisions merge mass and momentum · F = G·m₁·m₂/r²
         </Text>
       </FadeIn>
     </Container>
